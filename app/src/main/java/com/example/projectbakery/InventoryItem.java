@@ -48,7 +48,7 @@ public class InventoryItem implements Comparator<InventoryItem>
 	@Override
 	public String toString()
 	{
-		return "";
+		return "Item Name: " + name + "\nItem Category: " + category + "\nAmount: " + amount;
 	}
 	//Compares by first putting any items with a zero quantity at the end and then sorting
 	//by alphabetical order with the name
