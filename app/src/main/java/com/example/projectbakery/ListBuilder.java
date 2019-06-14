@@ -23,7 +23,7 @@ public class ListBuilder
 		masterList.add(item);
 	}
 
-	public void buildList()
+	public void buildList() //Builds the printing list from a number of smaller lists
 	{
 		ArrayList<InventoryItem> doughs = new ArrayList<>();
 		ArrayList<InventoryItem> liquids = new ArrayList<>();
@@ -98,8 +98,11 @@ public class ListBuilder
 		printingList.add(ingredients);
 		printingList.add(miscellaneous);
 	}
-	public void printList()
+	public void printList() //Prints the printing list
 	{
+		buildList();
+
+		//For now, this prints to the console, however we need to modify this to print to the ListView later on
 		for(int i = 0; i < printingList.size(); i++)
 		{
 			for(int j = 0; j < printingList.get(i).size(); j++)
