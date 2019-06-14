@@ -4,11 +4,16 @@ import java.util.Comparator;
 
 public class InventoryItem implements Comparator<InventoryItem>
 {
-	private String name;
-	private String category;
-	private int amount;
+	private String name; //Actual name of the inventory item
+	private String category; //Category of the inventory item (dough, liquid, etc.)
+	private int amount; //Amount of the inventory item
 
-	public InventoryItem(){}
+	public InventoryItem()
+	{
+		name = "";
+		category = "";
+		amount = -1;
+	}
 	public InventoryItem(String name, String category, int amount)
 	{
 		this.name = name;
@@ -29,6 +34,8 @@ public class InventoryItem implements Comparator<InventoryItem>
 		return amount;
 	}
 
+	//We only need setters for name and amount because category will work with
+	//radio buttons and not a text entry field
 	public void setName(String name)
 	{
 		this.name = name;
@@ -43,6 +50,8 @@ public class InventoryItem implements Comparator<InventoryItem>
 	{
 		return "";
 	}
+	//Compares by first putting any items with a zero quantity at the end and then sorting
+	//by alphabetical order with the name
 	@Override
 	public int compare(InventoryItem item1, InventoryItem item2)
 	{

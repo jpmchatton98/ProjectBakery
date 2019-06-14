@@ -1,14 +1,13 @@
 package com.example.projectbakery;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
 
 public class ListBuilder
 {
-	private ArrayList<InventoryItem> masterList;
-	private ArrayList<ArrayList<InventoryItem>> printingList;
+	private ArrayList<InventoryItem> masterList; //Master, unsorted list of inventory items
+	private ArrayList<ArrayList<InventoryItem>> printingList; //List of several sorted lists of inventory items for printing
 
-	ListBuilder()
+	public ListBuilder()
 	{
 		masterList = new ArrayList<>();
 		printingList = new ArrayList<>();
@@ -18,6 +17,10 @@ public class ListBuilder
 	{
 		return masterList;
 	}
+	public void setList(ArrayList<InventoryItem> masterList)
+	{
+		this.masterList = masterList;
+	}
 	public void addItem(InventoryItem item)
 	{
 		masterList.add(item);
@@ -25,6 +28,7 @@ public class ListBuilder
 
 	public void buildList() //Builds the printing list from a number of smaller lists
 	{
+		//Smaller lists by category
 		ArrayList<InventoryItem> doughs = new ArrayList<>();
 		ArrayList<InventoryItem> liquids = new ArrayList<>();
 		ArrayList<InventoryItem> breads = new ArrayList<>();
@@ -33,7 +37,7 @@ public class ListBuilder
 		ArrayList<InventoryItem> ingredients = new ArrayList<>();
 		ArrayList<InventoryItem> miscellaneous = new ArrayList<>();
 
-		for(int i = 0; i < masterList.size(); i++)
+		for(int i = 0; i < masterList.size(); i++) //Fill the smaller lists
 		{
 			InventoryItem current = masterList.get(i);
 
@@ -74,7 +78,7 @@ public class ListBuilder
 					miscellaneous.add(current);
 					break;
 				}
-				default:
+				default: //This should never happen
 				{
 					System.out.println("How did you get here?");
 					break;
@@ -82,6 +86,7 @@ public class ListBuilder
 			}
 		}
 
+		//Sort the smaller lists
 		Collections.sort(doughs, new InventoryItem());
 		Collections.sort(liquids, new InventoryItem());
 		Collections.sort(breads, new InventoryItem());
@@ -90,6 +95,7 @@ public class ListBuilder
 		Collections.sort(ingredients, new InventoryItem());
 		Collections.sort(miscellaneous, new InventoryItem());
 
+		//Add the smaller lists to the printing list
 		printingList.add(doughs);
 		printingList.add(liquids);
 		printingList.add(breads);
@@ -100,7 +106,7 @@ public class ListBuilder
 	}
 	public void printList() //Prints the printing list
 	{
-		buildList();
+		buildList(); //Build the printing list
 
 		//For now, this prints to the console, however we need to modify this to print to the ListView later on
 		for(int i = 0; i < printingList.size(); i++)
