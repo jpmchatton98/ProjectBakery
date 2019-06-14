@@ -17,26 +17,4 @@ public class MainActivity extends AppCompatActivity
 
 
     }
-
-    public void assertTest()
-    {
-        InventoryItem testItem = new InventoryItem("Regular Dogh", "dough", 7);
-
-        assertEquals("Regular Dogh", testItem.getName());
-        assertEquals("dough", testItem.getCategory());
-        assertEquals(7, testItem.getAmount());
-
-        testItem.setName("Regular Dough");
-
-        assertEquals("Regular Dough", testItem.getName());
-
-        ArrayList<InventoryItem> testList = new ArrayList<>();
-        testList.add(testItem);
-
-        assertEquals(testList.get(0), testItem);
-
-        testList.remove(0);
-
-        assertEquals(0, testList.size());
-    }
 }

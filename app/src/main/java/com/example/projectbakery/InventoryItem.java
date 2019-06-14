@@ -8,6 +8,7 @@ public class InventoryItem implements Comparator<InventoryItem>
 	private String category;
 	private int amount;
 
+	public InventoryItem(){}
 	public InventoryItem(String name, String category, int amount)
 	{
 		this.name = name;
