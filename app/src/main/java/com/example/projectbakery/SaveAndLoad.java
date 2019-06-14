@@ -13,23 +13,25 @@ public class SaveAndLoad
 
 	public SaveAndLoad()
 	{
-		//Will set the fileInput and fileOutput Scanners to the storage file
+		//TODO Set fileInput and fileOutput to the txt file for storage
 	}
 
 	public JSONObject createJSON(ArrayList<InventoryItem> masterList) //Creates the JSON from a list
 	{
+		//TODO Create code to create JSON string from the master storage list
 		return null;
 	}
 	public ArrayList readJSON() //Reads the JSON from the file and returns a new list
 	{
+		//TODO Create code to change JSON string into the master storage list
 		return null;
 	}
 	public void saveToFile() //Saves the JSON to the file
 	{
-
+		//TODO Create code to save JSON string to txt file
 	}
 	public void loadFromFile() //Loads the JSON from the file
 	{
-
+		//TODO Create code to get JSON string from txt file and store it
 	}
 }
