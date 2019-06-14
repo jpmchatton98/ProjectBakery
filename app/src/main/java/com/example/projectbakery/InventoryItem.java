@@ -2,7 +2,6 @@ package com.example.projectbakery;
 
 import java.util.Comparator;
 
-//Test Change 2
 public class InventoryItem implements Comparator<InventoryItem>
 {
 	private String name; //Actual name of the inventory item
