@@ -34,6 +34,9 @@ public class MainActivity extends AppCompatActivity
 	 }
 	 public void loadStorage(View view)
 	 {
+		 Context context = this;
+		 SharedPreferences pref = context.getSharedPreferences("com.example.projectbakery", Context.MODE_PRIVATE);
 
+		 System.out.println(pref.getString("masterStorage", ""));
 	 }
 }
