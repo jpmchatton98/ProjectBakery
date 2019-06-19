@@ -62,6 +62,8 @@ public class SaveAndLoad
 		String jsonString = createJSON(masterList).toString();
 		final String key = "masterStorage";
 
+		System.out.println(jsonString);
+
 		SharedPreferences.Editor editor = pref.edit();
 		editor.putString(key, jsonString);
 		editor.commit();
