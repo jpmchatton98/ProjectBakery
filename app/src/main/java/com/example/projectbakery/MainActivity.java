@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.PopupWindow;
 
 import java.util.ArrayList;
@@ -21,6 +22,12 @@ public class MainActivity extends AppCompatActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+		ListBuilder builder = new ListBuilder((ListView) findViewById(R.id.itemList), this);
+		builder.addItem(new InventoryItem("A", "dough", 60));
+		builder.addItem(new InventoryItem("B", "liquid", 54));
+
+		builder.printList();
 	}
 
 	public void saveStorage(View view)
