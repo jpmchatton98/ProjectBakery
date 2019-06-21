@@ -7,6 +7,7 @@
     tools:context=".MainActivity">
 
     <ListView
+        android:id="@+id/itemList"
         android:layout_width="375dp"
         android:layout_height="600dp"
         android:layout_marginStart="8dp"
@@ -21,22 +22,34 @@
     <Button
         android:id="@+id/saveButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_height="50dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:onClick="saveStorage"
         android:text="Save"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/loadButton"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/loadButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:onClick="loadStorage"
         android:text="Load"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/addItemButton"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Add Item"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>
