@@ -21,16 +21,16 @@ public class UnitTests {
 
     @Test
     public void JSONwriter() {
-
+        //TODO: Test JSON writing
     }
 
     @Test
     public void JSONreader() {
-
+        //TODO: Test JSON reading
     }
 
     @Test
     public void buildList() {
-
+        //TODO: Test bulid list
     }
 }
