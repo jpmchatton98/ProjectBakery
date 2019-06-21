@@ -1,3 +1,13 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
     <string name="app_name">ProjectBakery</string>
+
+    <string-array name="categories">
+        <item>Dough</item>
+        <item>Liquid</item>
+        <item>Bread</item>
+        <item>Muffin</item>
+        <item>Dessert</item>
+        <item>Ingredient</item>
+        <item>Miscellaneous</item>
+    </string-array>
 </resources>
