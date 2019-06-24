@@ -14,8 +14,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import static junit.framework.Assert.*; //Useless now, wil be used for unit testing later
-
 public class MainActivity extends AppCompatActivity
 {
 	@Override
@@ -70,9 +68,10 @@ public class MainActivity extends AppCompatActivity
 	{
 		TextView searchBox = findViewById(R.id.searchBox);
 		String query = searchBox.getText().toString();
+		//TODO Assign query String to the list to search by item name
 	}
 	public void filterItems(View view)
 	{
-
+		//TODO Create dropdown window with radio buttons for filters and assign the filters to the list
 	}
 }
