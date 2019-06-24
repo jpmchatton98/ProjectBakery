@@ -68,4 +68,13 @@
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/addButton" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:elevation="-1dp"
+        tools:layout_editor_absoluteX="-11dp"
+        tools:layout_editor_absoluteY="-291dp" />
 </android.support.constraint.ConstraintLayout>
