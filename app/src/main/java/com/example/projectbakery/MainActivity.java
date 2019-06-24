@@ -70,9 +70,10 @@ public class MainActivity extends AppCompatActivity
 	{
 		TextView searchBox = findViewById(R.id.searchBox);
 		String query = searchBox.getText().toString();
+		//TODO Assign query String to the list to search by item name
 	}
 	public void filterItems(View view)
 	{
-
+		//TODO Create dropdown window with radio buttons for filters and assign the filters to the list
 	}
 }
