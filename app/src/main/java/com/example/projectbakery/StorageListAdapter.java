@@ -68,7 +68,8 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 		convertView.setTag(holder);
 
 		holder.name.setText(item.getName());
-		holder.amount.setText(item.getAmount());
+		String amountString = item.getAmount() + "";
+		holder.amount.setText(amountString);
 		holder.category.setText(item.getCategory());
 
 		return convertView;
