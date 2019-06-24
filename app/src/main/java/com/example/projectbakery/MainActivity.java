@@ -8,11 +8,11 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import java.util.ArrayList;
-
-import static junit.framework.Assert.*; //Useless now, wil be used for unit testing later
 
 public class MainActivity extends AppCompatActivity
 {
@@ -21,6 +21,12 @@ public class MainActivity extends AppCompatActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+		ListBuilder builder = new ListBuilder((ListView) findViewById(R.id.itemList), this);
+		builder.addItem(new InventoryItem("A", "dough", 60));
+		builder.addItem(new InventoryItem("B", "liquid", 54));
+
+		builder.printList();
 	}
 
 	public void saveStorage(View view)
@@ -57,5 +63,15 @@ public class MainActivity extends AppCompatActivity
 	 	final PopupWindow window = new PopupWindow(popupView, width, height, focusable);
 
 	 	window.showAtLocation(view, Gravity.CENTER, 0, 0);
+	}
+	public void searchItems(View view)
+	{
+		TextView searchBox = findViewById(R.id.searchBox);
+		String query = searchBox.getText().toString();
+		//TODO Assign query String to the list to search by item name
+	}
+	public void filterItems(View view)
+	{
+		//TODO Create dropdown window with radio buttons for filters and assign the filters to the list
 	}
 }
