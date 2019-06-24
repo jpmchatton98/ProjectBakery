@@ -82,6 +82,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/listitembackground" />
+        app:srcCompat="@drawable/background"
+        tools:srcCompat="@drawable/background" />
 
 </android.support.constraint.ConstraintLayout>
