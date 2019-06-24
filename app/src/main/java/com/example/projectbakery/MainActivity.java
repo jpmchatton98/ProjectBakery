@@ -14,8 +14,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import static junit.framework.Assert.*; //Useless now, wil be used for unit testing later
-
 public class MainActivity extends AppCompatActivity
 {
 	@Override
