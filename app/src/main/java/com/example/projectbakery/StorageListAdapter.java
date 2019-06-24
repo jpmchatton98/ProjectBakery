@@ -49,9 +49,9 @@ public class StorageListAdapter extends BaseAdapter implements ListAdapter
 			view = inflater.inflate(R.layout.list_item, null);
 		}
 
-		TextView nameLabel = (TextView) view.findViewById(R.id.nameLabel);
-		TextView categoryLabel = (TextView) view.findViewById(R.id.categoryLabel);
-		TextView amountLabel = (TextView) view.findViewById(R.id.amountLabel);
+		TextView name = (TextView) view.findViewById(R.id.nameLabel);
+		TextView category = (TextView) view.findViewById(R.id.categoryLabel);
+		TextView amount = (TextView) view.findViewById(R.id.amountLabel);
 
 		return view;
 	}
