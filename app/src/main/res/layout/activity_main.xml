@@ -62,6 +62,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="8dp"
         android:layout_weight="1"
-        android:background="#A26F33" />
+        android:background="#A26F33"
+        android:elevation="-3dp" />
 
 </LinearLayout>
