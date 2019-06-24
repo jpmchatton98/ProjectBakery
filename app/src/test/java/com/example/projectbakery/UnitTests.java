@@ -46,9 +46,9 @@ public class UnitTests
 		ListBuilder builder = new ListBuilder(); //Create a ListBuilder object
 
 		//Add items to the builder
+		builder.addItem(testEmptyDough);
 		builder.addItem(testDough);
 		builder.addItem(testLiquid);
-		builder.addItem(testEmptyDough);
 
 		ArrayList<ArrayList<InventoryItem>> builtList = builder.buildList(); //Call buildList and assign it to a list
 
