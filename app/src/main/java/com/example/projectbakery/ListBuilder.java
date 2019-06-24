@@ -1,5 +1,9 @@
 package com.example.projectbakery;
 
+import android.app.Activity;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -7,11 +11,20 @@ public class ListBuilder
 {
 	private ArrayList<InventoryItem> masterList; //Master, unsorted list of inventory items
 	private ArrayList<ArrayList<InventoryItem>> printingList; //List of several sorted lists of inventory items for printing
+	private ListView listView = null;
+	private Activity mainActivity = null;
 
 	public ListBuilder()
 	{
 		masterList = new ArrayList<>();
 		printingList = new ArrayList<>();
+	}
+	public ListBuilder(ListView listView, Activity mainActivity)
+	{
+		masterList = new ArrayList<>();
+		printingList = new ArrayList<>();
+		this.listView = listView;
+		this.mainActivity = mainActivity;
 	}
 
 	public ArrayList getList()
@@ -27,7 +40,7 @@ public class ListBuilder
 		masterList.add(item);
 	}
 
-	public void buildList() //Builds the printing list from a number of smaller lists
+	public ArrayList<ArrayList<InventoryItem>> buildList() //Builds the printing list from a number of smaller lists
 	{
 		//Smaller lists by category
 		ArrayList<InventoryItem> doughs = new ArrayList<>();
@@ -104,18 +117,29 @@ public class ListBuilder
 		printingList.add(desserts);
 		printingList.add(ingredients);
 		printingList.add(miscellaneous);
+
+		return printingList;
 	}
 	public void printList() //Prints the printing list
 	{
 		buildList(); //Build the printing list
+
+		final ArrayList<InventoryItem> singlePrintingList = new ArrayList<>();
 
 		//For now, this prints to the console, however we need to modify this to print to the ListView later on
 		for(int i = 0; i < printingList.size(); i++)
 		{
 			for(int j = 0; j < printingList.get(i).size(); j++)
 			{
-				System.out.println(printingList.get(i).get(j).toString());
+				singlePrintingList.add(printingList.get(i).get(j));
 			}
 		}
+
+		mainActivity.runOnUiThread(new Runnable(){
+			public void run()
+			{
+				listView.setAdapter(new StorageListAdapter(singlePrintingList, mainActivity));
+			}
+		});
 	}
 }

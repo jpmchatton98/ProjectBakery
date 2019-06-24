@@ -1,20 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_width="fill_parent"
+    android:layout_height="700dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#A26F33"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/addItemButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="0"
+            android:onClick="addItem"
+            app:srcCompat="@android:drawable/ic_menu_add" />
+
+        <EditText
+            android:id="@+id/searchBox"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0"
+            android:ems="10"
+            android:inputType="text" />
+
+        <ImageButton
+            android:id="@+id/searchItemButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="0"
+            android:layoutDirection="inherit"
+            android:onClick="searchItems"
+            app:srcCompat="@android:drawable/ic_menu_search" />
+
+        <ImageButton
+            android:id="@+id/filterItemButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="0"
+            android:onClick="filterItems"
+            app:srcCompat="@android:drawable/ic_menu_more" />
+
+    </LinearLayout>
 
     <ListView
-        android:layout_width="375dp"
-        android:layout_height="600dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:id="@+id/itemList"
+        android:layout_width="370dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.8" />
-</android.support.constraint.ConstraintLayout>
+        android:layout_weight="1"
+        android:background="#A26F33" />
+
+</LinearLayout>
