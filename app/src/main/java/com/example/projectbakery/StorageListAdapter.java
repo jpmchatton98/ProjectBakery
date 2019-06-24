@@ -74,7 +74,7 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 		char[] categoryArray = categoryString.toCharArray();
 		char firstLetter = Character.toUpperCase(categoryArray[0]);
 		categoryArray[0] = firstLetter;
-		categoryString = categoryArray.toString();
+		categoryString = new String(categoryArray);
 
 		holder.category.setText(categoryString);
 
