@@ -14,6 +14,11 @@ public class ListBuilder
 	private ListView listView = null;
 	private Activity mainActivity = null;
 
+	public ListBuilder()
+	{
+		masterList = new ArrayList<>();
+		printingList = new ArrayList<>();
+	}
 	public ListBuilder(ListView listView, Activity mainActivity)
 	{
 		masterList = new ArrayList<>();
@@ -35,7 +40,7 @@ public class ListBuilder
 		masterList.add(item);
 	}
 
-	public void buildList() //Builds the printing list from a number of smaller lists
+	public ArrayList<ArrayList<InventoryItem>> buildList() //Builds the printing list from a number of smaller lists
 	{
 		//Smaller lists by category
 		ArrayList<InventoryItem> doughs = new ArrayList<>();
@@ -112,6 +117,8 @@ public class ListBuilder
 		printingList.add(desserts);
 		printingList.add(ingredients);
 		printingList.add(miscellaneous);
+
+		return printingList;
 	}
 	public void printList() //Prints the printing list
 	{

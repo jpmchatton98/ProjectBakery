@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -64,5 +65,14 @@ public class MainActivity extends AppCompatActivity
 	 	final PopupWindow window = new PopupWindow(popupView, width, height, focusable);
 
 	 	window.showAtLocation(view, Gravity.CENTER, 0, 0);
+	}
+	public void searchItems(View view)
+	{
+		TextView searchBox = findViewById(R.id.searchBox);
+		String query = searchBox.getText().toString();
+	}
+	public void filterItems(View view)
+	{
+
 	}
 }
