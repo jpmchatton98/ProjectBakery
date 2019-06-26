@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
@@ -17,6 +18,8 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 		TextView name;
 		TextView amount;
 		TextView category;
+		Button plusButton;
+		Button minusButton;
 	}
 
 	private ArrayList<InventoryItem> list = null;
@@ -50,9 +53,8 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
-		InventoryItem item = getItem(position);
-
-		ViewHolder holder;
+		final InventoryItem item = getItem(position);
+		final ViewHolder holder;
 
 		holder = new ViewHolder();
 
@@ -77,6 +79,30 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 		categoryString = new String(categoryArray);
 
 		holder.category.setText(categoryString);
+
+		holder.plusButton = convertView.findViewById(R.id.addButton);
+		holder.minusButton = convertView.findViewById(R.id.subtractButton);
+
+		holder.plusButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v)
+			{
+				item.setAmount(item.getAmount() + 1);
+
+				String amountString = item.getAmount() + "";
+				holder.amount.setText(amountString);
+			}
+		});
+		holder.minusButton.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v)
+			{
+				item.setAmount(item.getAmount() - 1);
+
+				String amountString = item.getAmount() + "";
+				holder.amount.setText(amountString);
+			}
+		});
 
 		return convertView;
 	}
