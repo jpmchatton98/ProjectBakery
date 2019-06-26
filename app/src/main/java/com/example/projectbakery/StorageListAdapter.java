@@ -123,8 +123,14 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 					else
 					{
 						int amountToChange = Integer.parseInt(amountChanger.getText().toString());
-
-						item.setAmount(item.getAmount() - amountToChange);
+						if(amountToChange > item.getAmount())
+						{
+							item.setAmount(0);
+						}
+						else
+						{
+							item.setAmount(item.getAmount() - amountToChange);
+						}
 
 						String amountString = item.getAmount() + "";
 						holder.amount.setText(amountString);
