@@ -17,12 +17,37 @@ public class UnitTests
 		Assert.assertEquals("dough", testDough.getCategory()); //Check category
 		Assert.assertEquals(10, testDough.getAmount()); //Check amount
 		//TODO Test changing InventoryItem quantity: Jordan
+		//Test changing test dough quantity
+		testDough.setAmount(12);
+		Assert.assertEquals(12, testDough.getAmount()); //Check amount
+
+		//Test adding one to test dough
+		testDough.setAmount(testDough.getAmount() + 1);
+		Assert.assertEquals(13, testDough.getAmount()); //Check amount
+
+		//Test subtracting one to test dough
+		testDough.setAmount(testDough.getAmount() - 1);
+		Assert.assertEquals(12, testDough.getAmount()); //Check amount
+
 
 		InventoryItem testLiquid = new InventoryItem("frosting", "liquid", 20); //Create testing liquid item
 
 		Assert.assertEquals("frosting", testLiquid.getName()); //Check name
 		Assert.assertEquals("liquid", testLiquid.getCategory()); //Check category
 		Assert.assertEquals(20, testLiquid.getAmount()); //Check amount
+
+		//Test changing test liquid quantity
+		testDough.setAmount(14);
+		Assert.assertEquals(14, testDough.getAmount()); //Check amount
+
+		//Test adding one to test liquid
+		testDough.setAmount(testLiquid.getAmount() + 1);
+		Assert.assertEquals(15, testLiquid.getAmount()); //Check amount
+
+		//Test subtracting one to test liquid
+		testDough.setAmount(testLiquid.getAmount() - 1);
+		Assert.assertEquals(14, testDough.getAmount()); //Check amount
+
 	}
 
 	@Test
