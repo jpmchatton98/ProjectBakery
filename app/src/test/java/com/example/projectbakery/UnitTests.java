@@ -16,6 +16,7 @@ public class UnitTests
 		Assert.assertEquals("sourdough", testDough.getName()); //Check name
 		Assert.assertEquals("dough", testDough.getCategory()); //Check category
 		Assert.assertEquals(10, testDough.getAmount()); //Check amount
+		//TODO Test changing InventoryItem quantity
 
 		InventoryItem testLiquid = new InventoryItem("frosting", "liquid", 20); //Create testing liquid item
 
