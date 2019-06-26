@@ -83,24 +83,53 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 		holder.plusButton = convertView.findViewById(R.id.addButton);
 		holder.minusButton = convertView.findViewById(R.id.subtractButton);
 
+		final TextView amountChanger = convertView.findViewById(R.id.amountChangeInput);
+
 		holder.plusButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v)
 			{
-				item.setAmount(item.getAmount() + 1);
+				if (amountChanger.getText().toString() == "")
+				{
+					item.setAmount(item.getAmount() + 1);
 
-				String amountString = item.getAmount() + "";
-				holder.amount.setText(amountString);
+					String amountString = item.getAmount() + "";
+					holder.amount.setText(amountString);
+				}
+				else
+				{
+					int amountToChange = Integer.parseInt(amountChanger.getText().toString());
+
+					item.setAmount(item.getAmount() + amountToChange);
+
+					String amountString = item.getAmount() + "";
+					holder.amount.setText(amountString);
+				}
 			}
 		});
 		holder.minusButton.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View v)
 			{
-				item.setAmount(item.getAmount() - 1);
+				if(item.getAmount() > 0)
+				{
+					if (amountChanger.getText().toString() == "")
+					{
+						item.setAmount(item.getAmount() - 1);
 
-				String amountString = item.getAmount() + "";
-				holder.amount.setText(amountString);
+						String amountString = item.getAmount() + "";
+						holder.amount.setText(amountString);
+					}
+					else
+					{
+						int amountToChange = Integer.parseInt(amountChanger.getText().toString());
+
+						item.setAmount(item.getAmount() - amountToChange);
+
+						String amountString = item.getAmount() + "";
+						holder.amount.setText(amountString);
+					}
+				}
 			}
 		});
 
