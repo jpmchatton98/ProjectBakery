@@ -29,12 +29,20 @@ public class UnitTests
 	public void JSONwriter()
 	{
 		//TODO: Test JSON writing: Dale
+		// Create fake inventory
+
+		// Make fake inventory into JSON
+
+		// Compare JSON to pre-made string using toString
 	}
 
 	@Test
 	public void JSONreader()
 	{
 		//TODO: Test JSON reading: Josh
+
+		//
+
 	}
 
 	@Test
