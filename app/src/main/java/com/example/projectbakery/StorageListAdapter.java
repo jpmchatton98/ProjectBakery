@@ -5,12 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements ListAdapter
 {
@@ -68,9 +66,17 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 		convertView.setTag(holder);
 
 		holder.name.setText(item.getName());
+
 		String amountString = item.getAmount() + "";
 		holder.amount.setText(amountString);
-		holder.category.setText(item.getCategory());
+
+		String categoryString = item.getCategory();
+		char[] categoryArray = categoryString.toCharArray();
+		char firstLetter = Character.toUpperCase(categoryArray[0]);
+		categoryArray[0] = firstLetter;
+		categoryString = new String(categoryArray);
+
+		holder.category.setText(categoryString);
 
 		return convertView;
 	}
