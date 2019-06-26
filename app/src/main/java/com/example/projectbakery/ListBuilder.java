@@ -19,6 +19,7 @@ public class ListBuilder
 		masterList = new ArrayList<>();
 		printingList = new ArrayList<>();
 	}
+
 	public ListBuilder(ListView listView, Activity mainActivity)
 	{
 		masterList = new ArrayList<>();
@@ -31,10 +32,12 @@ public class ListBuilder
 	{
 		return masterList;
 	}
+
 	public void setList(ArrayList<InventoryItem> masterList)
 	{
 		this.masterList = masterList;
 	}
+
 	public void addItem(InventoryItem item)
 	{
 		masterList.add(item);
@@ -51,11 +54,11 @@ public class ListBuilder
 		ArrayList<InventoryItem> ingredients = new ArrayList<>();
 		ArrayList<InventoryItem> miscellaneous = new ArrayList<>();
 
-		for(int i = 0; i < masterList.size(); i++) //Fill the smaller lists
+		for (int i = 0; i < masterList.size(); i++) //Fill the smaller lists
 		{
 			InventoryItem current = masterList.get(i);
 
-			switch(current.getCategory())
+			switch (current.getCategory())
 			{
 				case "dough":
 				{
@@ -120,6 +123,7 @@ public class ListBuilder
 
 		return printingList;
 	}
+
 	public void printList() //Prints the printing list
 	{
 		buildList(); //Build the printing list
@@ -127,15 +131,16 @@ public class ListBuilder
 		final ArrayList<InventoryItem> singlePrintingList = new ArrayList<>();
 
 		//For now, this prints to the console, however we need to modify this to print to the ListView later on
-		for(int i = 0; i < printingList.size(); i++)
+		for (int i = 0; i < printingList.size(); i++)
 		{
-			for(int j = 0; j < printingList.get(i).size(); j++)
+			for (int j = 0; j < printingList.get(i).size(); j++)
 			{
 				singlePrintingList.add(printingList.get(i).get(j));
 			}
 		}
 
-		mainActivity.runOnUiThread(new Runnable(){
+		mainActivity.runOnUiThread(new Runnable()
+		{
 			public void run()
 			{
 				listView.setAdapter(new StorageListAdapter(singlePrintingList, mainActivity));
