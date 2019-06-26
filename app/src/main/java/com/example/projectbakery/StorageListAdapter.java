@@ -94,10 +94,7 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 				{
 					amountToChange = Integer.parseInt(amountChanger.getText().toString());
 				}
-				catch (Exception e)
-				{
-					e.printStackTrace();
-				}
+				catch (NumberFormatException e){}
 
 				item.setAmount(item.getAmount() + amountToChange);
 
@@ -117,10 +114,7 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 					{
 						amountToChange = Integer.parseInt(amountChanger.getText().toString());
 					}
-					catch(Exception e)
-					{
-						e.printStackTrace();
-					}
+					catch(NumberFormatException e){}
 
 					if(amountToChange > item.getAmount())
 					{
