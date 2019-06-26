@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1077023721509",
+    "firebase_url": "https://projectbakery-a8e74.firebaseio.com",
+    "project_id": "projectbakery-a8e74",
+    "storage_bucket": "projectbakery-a8e74.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1077023721509:android:0bae7fbdfe45c545",
+        "android_client_info": {
+          "package_name": "com.example.projectbakery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1077023721509-jqm9uqs41e5d4f2itr960spd68ffqrq8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfingAaGe7LSSfhA1Pcjqs-3xhhFLl38A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1077023721509-jqm9uqs41e5d4f2itr960spd68ffqrq8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -4,19 +4,27 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class StorageListAdapter extends BaseAdapter implements ListAdapter
+public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements ListAdapter
 {
+	class ViewHolder
+	{
+		TextView name;
+		TextView amount;
+		TextView category;
+	}
+
 	private ArrayList<InventoryItem> list = null;
 	private Context context;
 
 	StorageListAdapter(ArrayList<InventoryItem> list, Context context)
 	{
+		super(context, R.layout.list_item, list);
 		this.list = list;
 		this.context = context;
 	}
@@ -28,7 +36,7 @@ public class StorageListAdapter extends BaseAdapter implements ListAdapter
 	}
 
 	@Override
-	public Object getItem(int position)
+	public InventoryItem getItem(int position)
 	{
 		return list.get(position);
 	}
@@ -42,17 +50,34 @@ public class StorageListAdapter extends BaseAdapter implements ListAdapter
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
-		View view = convertView;
-		if(view == null)
-		{
-			LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			view = inflater.inflate(R.layout.list_item, null);
-		}
+		InventoryItem item = getItem(position);
 
-		TextView nameLabel = (TextView) view.findViewById(R.id.nameLabel);
-		TextView categoryLabel = (TextView) view.findViewById(R.id.categoryLabel);
-		TextView amountLabel = (TextView) view.findViewById(R.id.amountLabel);
+		ViewHolder holder;
 
-		return view;
+		holder = new ViewHolder();
+
+		LayoutInflater inflater = LayoutInflater.from(getContext());
+		convertView = inflater.inflate(R.layout.list_item, parent, false);
+
+		holder.name = convertView.findViewById(R.id.itemNameText);
+		holder.amount = convertView.findViewById(R.id.amountText);
+		holder.category = convertView.findViewById(R.id.categoryText);
+
+		convertView.setTag(holder);
+
+		holder.name.setText(item.getName());
+
+		String amountString = item.getAmount() + "";
+		holder.amount.setText(amountString);
+
+		String categoryString = item.getCategory();
+		char[] categoryArray = categoryString.toCharArray();
+		char firstLetter = Character.toUpperCase(categoryArray[0]);
+		categoryArray[0] = firstLetter;
+		categoryString = new String(categoryArray);
+
+		holder.category.setText(categoryString);
+
+		return convertView;
 	}
 }
