@@ -55,6 +55,11 @@ public class UnitTests
 	{
 		//TODO: Test JSON writing: Dale
 		// Create fake inventory
+		InventoryItem writeDough = new InventoryItem("Sourdough", "dough", 14);
+		InventoryItem writeLiquid = new InventoryItem ("Milk", "liquid", 7);
+		InventoryItem writeEmptyDough = new InventoryItem("Chocolate Chip Dough", "dough", 0);
+
+		ArrayList<ArrayList<InventoryItem>> writeInventory = new ArrayList<>();
 
 		// Make fake inventory into JSON
 
