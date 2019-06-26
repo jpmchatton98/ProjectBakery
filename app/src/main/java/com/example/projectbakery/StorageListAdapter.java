@@ -89,22 +89,20 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 			@Override
 			public void onClick(View v)
 			{
-				if (amountChanger.getText().toString() == "")
+				int amountToChange = 1;
+				try
 				{
-					item.setAmount(item.getAmount() + 1);
-
-					String amountString = item.getAmount() + "";
-					holder.amount.setText(amountString);
+					amountToChange = Integer.parseInt(amountChanger.getText().toString());
 				}
-				else
+				catch (Exception e)
 				{
-					int amountToChange = Integer.parseInt(amountChanger.getText().toString());
-
-					item.setAmount(item.getAmount() + amountToChange);
-
-					String amountString = item.getAmount() + "";
-					holder.amount.setText(amountString);
+					e.printStackTrace();
 				}
+
+				item.setAmount(item.getAmount() + amountToChange);
+
+				String amountString = item.getAmount() + "";
+				holder.amount.setText(amountString);
 			}
 		});
 		holder.minusButton.setOnClickListener(new View.OnClickListener(){
@@ -113,28 +111,28 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 			{
 				if(item.getAmount() > 0)
 				{
-					if (amountChanger.getText().toString() == "")
-					{
-						item.setAmount(item.getAmount() - 1);
+					int amountToChange = 1;
 
-						String amountString = item.getAmount() + "";
-						holder.amount.setText(amountString);
+					try
+					{
+						amountToChange = Integer.parseInt(amountChanger.getText().toString());
+					}
+					catch(Exception e)
+					{
+						e.printStackTrace();
+					}
+
+					if(amountToChange > item.getAmount())
+					{
+						item.setAmount(0);
 					}
 					else
 					{
-						int amountToChange = Integer.parseInt(amountChanger.getText().toString());
-						if(amountToChange > item.getAmount())
-						{
-							item.setAmount(0);
-						}
-						else
-						{
-							item.setAmount(item.getAmount() - amountToChange);
-						}
-
-						String amountString = item.getAmount() + "";
-						holder.amount.setText(amountString);
+						item.setAmount(item.getAmount() - amountToChange);
 					}
+
+					String amountString = item.getAmount() + "";
+					holder.amount.setText(amountString);
 				}
 			}
 		});
