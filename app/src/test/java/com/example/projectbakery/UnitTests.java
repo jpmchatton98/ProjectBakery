@@ -70,8 +70,11 @@ public class UnitTests
 	public void JSONreader()
 	{
 		//TODO: Test JSON reading: Josh
-
-		//
+		ArrayList<InventoryItem> testItems = new ArrayList<>();
+		testItems.add(new InventoryItem("Sourdough", "dough", 14));
+		testItems.add(new InventoryItem("Milk", "liquid", 7));
+		testItems.add(new InventoryItem("Chocolate Chip Dough", "dough", 4));
+		testItems.add(new InventoryItem("Kiaser Buns","Carter",121));
 
 	}
 
