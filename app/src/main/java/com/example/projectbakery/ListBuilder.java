@@ -143,6 +143,10 @@ public class ListBuilder
 		{
 			public void run()
 			{
+				if(listView.getAdapter() != null)
+				{
+					listView.setAdapter(null);
+				}
 				listView.setAdapter(new StorageListAdapter(singlePrintingList, mainActivity));
 			}
 		});
