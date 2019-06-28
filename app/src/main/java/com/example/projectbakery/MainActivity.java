@@ -16,13 +16,15 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
 {
+	ListBuilder builder = null;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		ListBuilder builder = new ListBuilder((ListView) findViewById(R.id.itemList), this);
+		builder = new ListBuilder((ListView) findViewById(R.id.itemList), this);
 		builder.addItem(new InventoryItem("A", "dough", 60));
 		builder.addItem(new InventoryItem("B", "liquid", 54));
 
@@ -63,6 +65,8 @@ public class MainActivity extends AppCompatActivity
 	 	final PopupWindow window = new PopupWindow(popupView, width, height, focusable);
 
 	 	window.showAtLocation(view, Gravity.CENTER, 0, 0);
+	 	PopupHandler handler = new PopupHandler();
+	 	handler.setOnClicks(builder, this);
 	}
 	public void searchItems(View view)
 	{
