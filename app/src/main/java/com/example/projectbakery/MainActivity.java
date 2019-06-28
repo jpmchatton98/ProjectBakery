@@ -69,14 +69,9 @@ public class MainActivity extends AppCompatActivity
 	 	window.showAtLocation(view, Gravity.CENTER, 0, 0);
 
 	 	View popUpView = window.getContentView();
-	 	TextView nameInput = popUpView.findViewById(R.id.itemName);
-	 	TextView amountInput = popUpView.findViewById(R.id.itemAmount);
-
-	 	Spinner categoryDropDown = popUpView.findViewById(R.id.categoryDropdown);
-
-	 	final String itemName = nameInput.getText().toString();
-	 	final int itemAmount = Integer.parseInt(amountInput.getText().toString());
-	 	final String itemCategory = categoryDropDown.getSelectedItem().toString().toLowerCase();
+	 	final TextView nameInput = popUpView.findViewById(R.id.itemName);
+	 	final TextView amountInput = popUpView.findViewById(R.id.itemAmount);
+	 	final Spinner categoryDropDown = popUpView.findViewById(R.id.categoryDropdown);
 
 	 	Button confirmButton = popUpView.findViewById(R.id.confirmButton);
 	 	confirmButton.setOnClickListener(new View.OnClickListener(){
@@ -84,6 +79,10 @@ public class MainActivity extends AppCompatActivity
 			@Override
 			public void onClick(View v)
 			{
+				String itemName = nameInput.getText().toString();
+				int itemAmount = Integer.parseInt(amountInput.getText().toString());
+				String itemCategory = categoryDropDown.getSelectedItem().toString().toLowerCase();
+
 				InventoryItem item = new InventoryItem(itemName, itemCategory, itemAmount);
 				builder.addItem(item);
 				builder.printList();
