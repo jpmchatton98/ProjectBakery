@@ -14,6 +14,19 @@ public class ListBuilder
 	private ListView listView = null;
 	private Activity mainActivity = null;
 
+	public StorageListAdapter getAdapter()
+	{
+		return adapter;
+	}
+	public void setAdapter(StorageListAdapter adapter)
+	{
+		this.adapter = adapter;
+	}
+
+	private StorageListAdapter adapter;
+
+
+
 	public ListBuilder()
 	{
 		masterList = new ArrayList<>();
@@ -143,11 +156,11 @@ public class ListBuilder
 		{
 			public void run()
 			{
-				if(listView.getAdapter() != null)
+				if(adapter == null)
 				{
-					listView.setAdapter(null);
+					adapter = new StorageListAdapter(singlePrintingList, mainActivity);
+					listView.setAdapter(adapter);
 				}
-				listView.setAdapter(new StorageListAdapter(singlePrintingList, mainActivity));
 			}
 		});
 	}
