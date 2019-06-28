@@ -67,9 +67,9 @@ public class UnitTests
 		writeInventory.add(writeEmptyDough);
 
 		// Make fake inventory into JSON
-		Gson writeGson = new Gson;
 
-		String writeOut = writeGson.toJson(writeInventory);
+
+		String writeOut = writeJson.toJson(writeInventory);
 
 		System.out.println(writeOut);
 		// Compare JSON to pre-made string using toString
