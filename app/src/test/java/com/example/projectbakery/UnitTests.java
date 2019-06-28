@@ -2,6 +2,7 @@ package com.example.projectbakery;
 
 import org.junit.Assert;
 import org.junit.Test;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -54,16 +55,26 @@ public class UnitTests
 	public void JSONwriter()
 	{
 		//TODO: Test JSON writing: Dale
+
 		// Create fake inventory
-		InventoryItem writeDough = new InventoryItem("Sourdough", "dough", 14);
+		InventoryItem writeDough = new InventoryItem("Sourdough", "dough", 14); // make items
 		InventoryItem writeLiquid = new InventoryItem ("Milk", "liquid", 7);
 		InventoryItem writeEmptyDough = new InventoryItem("Chocolate Chip Dough", "dough", 0);
 
-		ArrayList<ArrayList<InventoryItem>> writeInventory = new ArrayList<>();
+		ArrayList<ArrayList<InventoryItem>> writeInventory = new ArrayList<>(); // put items in a list
+		writeInventory.add(writeDough);
+		writeInventory.add(writeLiquid);
+		writeInventory.add(writeEmptyDough);
 
 		// Make fake inventory into JSON
+		Gson writeGson = new Gson;
 
+		String writeOut = writeGson.toJson(writeInventory);
+
+		System.out.println(writeOut);
 		// Compare JSON to pre-made string using toString
+
+
 	}
 
 	@Test
