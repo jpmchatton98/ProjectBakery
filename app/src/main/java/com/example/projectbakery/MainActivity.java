@@ -9,10 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.google.android.gms.auth.api.signin.internal.Storage;
 
 import java.util.ArrayList;
 
@@ -87,7 +90,9 @@ public class MainActivity extends AppCompatActivity
 				builder.addItem(item);
 				if(builder.getAdapter() != null)
 				{
-					builder.getAdapter().notifyDataSetChanged();
+					StorageListAdapter adapter = builder.getAdapter();
+					adapter.notifyDataSetChanged();
+					builder.setAdapter(adapter);
 				}
 				else
 				{
