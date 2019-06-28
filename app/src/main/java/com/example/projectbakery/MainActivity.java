@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -65,8 +67,27 @@ public class MainActivity extends AppCompatActivity
 	 	final PopupWindow window = new PopupWindow(popupView, width, height, focusable);
 
 	 	window.showAtLocation(view, Gravity.CENTER, 0, 0);
-	 	PopupHandler handler = new PopupHandler();
-	 	handler.setOnClicks(builder, this);
+
+	 	View popUpView = window.getContentView();
+	 	TextView nameInput = popUpView.findViewById(R.id.itemName);
+	 	TextView amountInput = popUpView.findViewById(R.id.itemAmount);
+
+	 	Spinner categoryDropDown = popUpView.findViewById(R.id.categoryDropdown);
+
+	 	final String itemName = nameInput.getText().toString();
+	 	final int itemAmount = Integer.parseInt(amountInput.getText().toString());
+	 	final String itemCategory = categoryDropDown.getSelectedItem().toString().toLowerCase();
+
+	 	Button confirmButton = popUpView.findViewById(R.id.confirmButton);
+	 	confirmButton.setOnClickListener(new View.OnClickListener(){
+
+			@Override
+			public void onClick(View v)
+			{
+				InventoryItem item = new InventoryItem(itemName, itemCategory, itemAmount);
+				builder.addItem(item);
+			}
+		});
 	}
 	public void searchItems(View view)
 	{
