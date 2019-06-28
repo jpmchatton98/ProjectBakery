@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity
 			{
 				InventoryItem item = new InventoryItem(itemName, itemCategory, itemAmount);
 				builder.addItem(item);
+				builder.printList();
 			}
 		});
 	}
