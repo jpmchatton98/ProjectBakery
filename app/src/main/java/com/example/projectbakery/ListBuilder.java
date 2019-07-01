@@ -23,6 +23,7 @@ public class ListBuilder
 	{
 		masterList = new ArrayList<>();
 		printingList = new ArrayList<>();
+		singlePrintingList = new ArrayList<>();
 	}
 
 	public ListBuilder(ListView listView, Activity mainActivity)
@@ -60,6 +61,10 @@ public class ListBuilder
 			});
 
 		}
+	}
+	public void deleteItem(String name)
+	{
+
 	}
 
 	public ArrayList<InventoryItem> buildList() //Builds the printing list from a number of smaller lists
