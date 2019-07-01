@@ -45,7 +45,10 @@ public class ListBuilder
 	public void addItem(InventoryItem item)
 	{
 		masterList.add(item);
-		adapter.notifyDataSetChanged();
+		if(adapter != null)
+		{
+			adapter.notifyDataSetChanged();
+		}
 	}
 
 	public ArrayList<ArrayList<InventoryItem>> buildList() //Builds the printing list from a number of smaller lists
