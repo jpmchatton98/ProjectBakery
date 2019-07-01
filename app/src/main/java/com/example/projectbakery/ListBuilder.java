@@ -45,6 +45,10 @@ public class ListBuilder
 	public void addItem(InventoryItem item)
 	{
 		masterList.add(item);
+		if(adapter != null)
+		{
+			adapter.add(item);
+		}
 	}
 	public void deleteItem(String name)
 	{
