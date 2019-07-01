@@ -53,6 +53,8 @@ public class ListBuilder
 				public void run()
 				{
 					adapter.notifyDataSetChanged();
+					listView.invalidateViews();
+					listView.refreshDrawableState();
 				}
 			});
 
@@ -155,14 +157,17 @@ public class ListBuilder
 			}
 		}
 
-		mainActivity.runOnUiThread(new Runnable()
+		if(adapter == null)
 		{
-			public void run()
+			mainActivity.runOnUiThread(new Runnable()
 			{
-				adapter = new StorageListAdapter(singlePrintingList, mainActivity);
-				listView.setAdapter(adapter);
+				public void run()
+				{
+					adapter = new StorageListAdapter(singlePrintingList, mainActivity);
+					listView.setAdapter(adapter);
+				}
 			}
+			);
 		}
-		);
 	}
 }
