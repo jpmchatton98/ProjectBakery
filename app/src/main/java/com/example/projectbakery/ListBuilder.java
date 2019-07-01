@@ -11,6 +11,7 @@ public class ListBuilder
 {
 	private ArrayList<InventoryItem> masterList; //Master, unsorted list of inventory items
 	private ArrayList<ArrayList<InventoryItem>> printingList; //List of several sorted lists of inventory items for printing
+	private ArrayList<InventoryItem> singlePrintingList;
 	private ListView listView = null;
 	private Activity mainActivity = null;
 
@@ -45,9 +46,9 @@ public class ListBuilder
 	public void addItem(InventoryItem item)
 	{
 		masterList.add(item);
+		singlePrintingList = buildList();
 		if(adapter != null)
 		{
-			adapter.add(item);
 			mainActivity.runOnUiThread(new Runnable(){
 				@Override
 				public void run()
@@ -61,7 +62,7 @@ public class ListBuilder
 		}
 	}
 
-	public ArrayList<ArrayList<InventoryItem>> buildList() //Builds the printing list from a number of smaller lists
+	public ArrayList<InventoryItem> buildList() //Builds the printing list from a number of smaller lists
 	{
 		//Smaller lists by category
 		ArrayList<InventoryItem> doughs = new ArrayList<>();
@@ -139,15 +140,6 @@ public class ListBuilder
 		printingList.add(ingredients);
 		printingList.add(miscellaneous);
 
-		return printingList;
-	}
-
-	public void printList() //Prints the printing list
-	{
-		buildList(); //Build the printing list
-
-		final ArrayList<InventoryItem> singlePrintingList = new ArrayList<>();
-
 		//For now, this prints to the console, however we need to modify this to print to the ListView later on
 		for (int i = 0; i < printingList.size(); i++)
 		{
@@ -157,6 +149,11 @@ public class ListBuilder
 			}
 		}
 
+		return singlePrintingList;
+	}
+
+	public void printList() //Prints the printing list
+	{
 		if(adapter == null)
 		{
 			mainActivity.runOnUiThread(new Runnable()
