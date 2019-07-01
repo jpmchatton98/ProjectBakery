@@ -155,16 +155,12 @@ public class ListBuilder
 			}
 		}
 
-		if(adapter == null)
+		mainActivity.runOnUiThread(new Runnable()
 		{
-			mainActivity.runOnUiThread(new Runnable()
+			public void run()
 			{
-				public void run()
-				{
-					adapter = new StorageListAdapter(singlePrintingList, mainActivity);
-					listView.setAdapter(adapter);
-				}
-			});
+				adapter = new StorageListAdapter(singlePrintingList, mainActivity);
+				listView.setAdapter(adapter);
 		}
 	}
 }
