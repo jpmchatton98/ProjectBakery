@@ -50,6 +50,11 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 		return 0;
 	}
 
+	public void setList(ArrayList<InventoryItem> list)
+	{
+		this.list = list;
+	}
+
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent)
 	{

@@ -45,10 +45,6 @@ public class ListBuilder
 	public void addItem(InventoryItem item)
 	{
 		masterList.add(item);
-		if(adapter != null)
-		{
-			adapter.add(item);
-		}
 	}
 	public void deleteItem(String name)
 	{
@@ -169,6 +165,8 @@ public class ListBuilder
 				}
 				else
 				{
+					adapter.setList(singlePrintingList);
+
 					adapter.notifyDataSetChanged();
 					listView.invalidateViews();
 					listView.refreshDrawableState();
