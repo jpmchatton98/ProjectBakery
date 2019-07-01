@@ -47,7 +47,14 @@ public class ListBuilder
 		masterList.add(item);
 		if(adapter != null)
 		{
-			adapter.notifyDataSetChanged();
+			mainActivity.runOnUiThread(new Runnable(){
+				@Override
+				public void run()
+				{
+					adapter.notifyDataSetChanged();
+				}
+			});
+
 		}
 	}
 
