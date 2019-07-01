@@ -32,6 +32,7 @@ public class ListBuilder
 		printingList = new ArrayList<>();
 		this.listView = listView;
 		this.mainActivity = mainActivity;
+		singlePrintingList = new ArrayList<>();
 	}
 
 	public ArrayList getList()
