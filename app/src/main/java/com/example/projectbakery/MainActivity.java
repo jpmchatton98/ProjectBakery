@@ -88,16 +88,7 @@ public class MainActivity extends AppCompatActivity
 
 				InventoryItem item = new InventoryItem(itemName, itemCategory, itemAmount);
 				builder.addItem(item);
-				if(builder.getAdapter() != null)
-				{
-					StorageListAdapter adapter = builder.getAdapter();
-					adapter.notifyDataSetChanged();
-					builder.setAdapter(adapter);
-				}
-				else
-				{
-					builder.printList();
-				}
+				builder.printList();
 
 				window.dismiss();
 			}

@@ -14,15 +14,6 @@ public class ListBuilder
 	private ListView listView = null;
 	private Activity mainActivity = null;
 
-	public StorageListAdapter getAdapter()
-	{
-		return adapter;
-	}
-	public void setAdapter(StorageListAdapter adapter)
-	{
-		this.adapter = adapter;
-	}
-
 	private StorageListAdapter adapter;
 
 
@@ -54,6 +45,7 @@ public class ListBuilder
 	public void addItem(InventoryItem item)
 	{
 		masterList.add(item);
+		adapter.notifyDataSetChanged();
 	}
 
 	public ArrayList<ArrayList<InventoryItem>> buildList() //Builds the printing list from a number of smaller lists
@@ -152,20 +144,16 @@ public class ListBuilder
 			}
 		}
 
-		mainActivity.runOnUiThread(new Runnable()
+		if(adapter == null)
 		{
-			public void run()
+			mainActivity.runOnUiThread(new Runnable()
 			{
-				if(adapter == null)
+				public void run()
 				{
 					adapter = new StorageListAdapter(singlePrintingList, mainActivity);
 					listView.setAdapter(adapter);
 				}
-				else
-				{
-					adapter.notifyDataSetChanged();
-				}
-			}
-		});
+			});
+		}
 	}
 }
