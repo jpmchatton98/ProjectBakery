@@ -161,6 +161,8 @@ public class ListBuilder
 			{
 				adapter = new StorageListAdapter(singlePrintingList, mainActivity);
 				listView.setAdapter(adapter);
+			}
 		}
+		);
 	}
 }
