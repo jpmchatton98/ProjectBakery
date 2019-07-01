@@ -11,7 +11,6 @@ public class ListBuilder
 {
 	private ArrayList<InventoryItem> masterList; //Master, unsorted list of inventory items
 	private ArrayList<ArrayList<InventoryItem>> printingList; //List of several sorted lists of inventory items for printing
-	private ArrayList<InventoryItem> singlePrintingList;
 	private ListView listView = null;
 	private Activity mainActivity = null;
 
@@ -23,7 +22,6 @@ public class ListBuilder
 	{
 		masterList = new ArrayList<>();
 		printingList = new ArrayList<>();
-		singlePrintingList = new ArrayList<>();
 	}
 
 	public ListBuilder(ListView listView, Activity mainActivity)
@@ -32,7 +30,6 @@ public class ListBuilder
 		printingList = new ArrayList<>();
 		this.listView = listView;
 		this.mainActivity = mainActivity;
-		singlePrintingList = new ArrayList<>();
 	}
 
 	public ArrayList getList()
@@ -48,28 +45,23 @@ public class ListBuilder
 	public void addItem(InventoryItem item)
 	{
 		masterList.add(item);
-		singlePrintingList = buildList();
-		if(adapter != null)
-		{
-			mainActivity.runOnUiThread(new Runnable(){
-				@Override
-				public void run()
-				{
-					adapter.notifyDataSetChanged();
-					listView.invalidateViews();
-					listView.refreshDrawableState();
-				}
-			});
-
-		}
 	}
 	public void deleteItem(String name)
 	{
-
+		for(int i = 0; i < masterList.size(); i++)
+		{
+			if(masterList.get(i).getName().equals(name))
+			{
+				masterList.remove(i);
+				break;
+			}
+		}
 	}
 
-	public ArrayList<InventoryItem> buildList() //Builds the printing list from a number of smaller lists
+	public void buildList() //Builds the printing list from a number of smaller lists
 	{
+		printingList.clear();
+
 		//Smaller lists by category
 		ArrayList<InventoryItem> doughs = new ArrayList<>();
 		ArrayList<InventoryItem> liquids = new ArrayList<>();
@@ -145,6 +137,13 @@ public class ListBuilder
 		printingList.add(desserts);
 		printingList.add(ingredients);
 		printingList.add(miscellaneous);
+	}
+
+	public void printList() //Prints the printing list
+	{
+		buildList();
+
+		final ArrayList<InventoryItem> singlePrintingList = new ArrayList<>();
 
 		//For now, this prints to the console, however we need to modify this to print to the ListView later on
 		for (int i = 0; i < printingList.size(); i++)
@@ -155,22 +154,23 @@ public class ListBuilder
 			}
 		}
 
-		return singlePrintingList;
-	}
-
-	public void printList() //Prints the printing list
-	{
-		if(adapter == null)
+		mainActivity.runOnUiThread(new Runnable()
 		{
-			mainActivity.runOnUiThread(new Runnable()
+			public void run()
 			{
-				public void run()
+				if(adapter == null)
 				{
 					adapter = new StorageListAdapter(singlePrintingList, mainActivity);
 					listView.setAdapter(adapter);
 				}
+				else
+				{
+					adapter.notifyDataSetChanged();
+					listView.invalidateViews();
+					listView.refreshDrawableState();
+				}
 			}
-			);
 		}
+		);
 	}
 }
