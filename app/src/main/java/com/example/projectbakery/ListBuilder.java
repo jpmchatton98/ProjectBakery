@@ -47,6 +47,7 @@ public class ListBuilder
 		masterList.add(item);
 		if(adapter != null)
 		{
+			adapter.add(item);
 			mainActivity.runOnUiThread(new Runnable(){
 				@Override
 				public void run()
