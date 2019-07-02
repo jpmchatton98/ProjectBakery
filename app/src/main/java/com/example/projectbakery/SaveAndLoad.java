@@ -1,24 +1,13 @@
 package com.example.projectbakery;
 
-import android.content.SharedPreferences;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class SaveAndLoad
 {
-	private Scanner fileInput; //Input text file stream
-	private Scanner fileOutput; //Output text file stream
-
-	public SaveAndLoad()
-	{
-		//TODO Set fileInput and fileOutput to the txt file for storage
-	}
-
 	public JSONArray createJSON(ArrayList<InventoryItem> masterList) //Creates the JSON from a list
 	{
 		JSONArray jsonItems = new JSONArray();
@@ -38,7 +27,6 @@ public class SaveAndLoad
 	public JSONObject createJSONItem(InventoryItem item)
 	{
 		JSONObject jsonItem = new JSONObject();
-
 		try
 		{
 			jsonItem.put("name", item.getName());
@@ -57,16 +45,11 @@ public class SaveAndLoad
 		//TODO Create code to change JSON string into the master storage list
 		return null;
 	}
-	public void saveToFile(ArrayList<InventoryItem> masterList, SharedPreferences pref) //Saves the JSON to the file
+	public JSONArray saveToFile(ArrayList<InventoryItem> masterList) //Saves the JSON to the file
 	{
-		String jsonString = createJSON(masterList).toString();
-		final String key = "masterStorage";
+		JSONArray json = createJSON(masterList);
 
-		System.out.println(jsonString);
-
-		SharedPreferences.Editor editor = pref.edit();
-		editor.putString(key, jsonString);
-		editor.commit();
+		return json;
 	}
 	public void loadFromFile() //Loads the JSON from the file
 	{

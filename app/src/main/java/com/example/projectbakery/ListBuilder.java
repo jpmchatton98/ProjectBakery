@@ -1,7 +1,6 @@
 package com.example.projectbakery;
 
 import android.app.Activity;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -35,6 +34,10 @@ public class ListBuilder
 	public ArrayList getList()
 	{
 		return masterList;
+	}
+	public ArrayList getPrintingList()
+	{
+		return printingList;
 	}
 
 	public void setList(ArrayList<InventoryItem> masterList)

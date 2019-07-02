@@ -1,7 +1,6 @@
 package com.example.projectbakery;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -9,15 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-import com.google.android.gms.auth.api.signin.internal.Storage;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -38,24 +32,12 @@ public class MainActivity extends AppCompatActivity
 
 	public void saveStorage(View view)
 	{
-		SaveAndLoad saving = new SaveAndLoad();
 
-		ArrayList<InventoryItem> testItems = new ArrayList<>();
-		testItems.add(new InventoryItem("A", "A", 5));
-		testItems.add(new InventoryItem("B", "A", 7));
-		testItems.add(new InventoryItem("C", "B", 4));
-
-		Context context = this;
-		SharedPreferences pref = context.getSharedPreferences("com.example.projectbakery", Context.MODE_PRIVATE);
-		saving.saveToFile(testItems, pref);
 	}
 
 	public void loadStorage(View view)
 	{
-		Context context = this;
-		SharedPreferences pref = context.getSharedPreferences("com.example.projectbakery", Context.MODE_PRIVATE);
 
-		System.out.println(pref.getString("masterStorage", ""));
 	}
 
 	public void addItem(View view)

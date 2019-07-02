@@ -1,11 +1,10 @@
 package com.example.projectbakery;
 
+import org.json.JSONArray;
 import org.junit.Assert;
 import org.junit.Test;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
-
 
 public class UnitTests
 {
@@ -17,7 +16,6 @@ public class UnitTests
 		Assert.assertEquals("sourdough", testDough.getName()); //Check name
 		Assert.assertEquals("dough", testDough.getCategory()); //Check category
 		Assert.assertEquals(10, testDough.getAmount()); //Check amount
-		//TODO Test changing InventoryItem quantity: Jordan
 		//Test changing test dough quantity
 		testDough.setAmount(12);
 		Assert.assertEquals(12, testDough.getAmount()); //Check amount
@@ -54,27 +52,26 @@ public class UnitTests
 	@Test
 	public void JSONwriter()
 	{
+		SaveAndLoad saver = new SaveAndLoad(); //SaveAndLoad for JSON creation
+
 		//TODO: Test JSON writing: Dale
 
-		// Create fake inventory
+		// Create fake inventory items
 		InventoryItem writeDough = new InventoryItem("Sourdough", "dough", 14); // make items
 		InventoryItem writeLiquid = new InventoryItem ("Milk", "liquid", 7);
 		InventoryItem writeEmptyDough = new InventoryItem("Chocolate Chip Dough", "dough", 0);
 
-		ArrayList<ArrayList<InventoryItem>> writeInventory = new ArrayList<>(); // put items in a list
+		//Add fake inventory items to a pseudo-masterList
+		ArrayList<InventoryItem> writeInventory = new ArrayList<>();
 		writeInventory.add(writeDough);
 		writeInventory.add(writeLiquid);
 		writeInventory.add(writeEmptyDough);
 
-		// Make fake inventory into JSON
+		// Make fake inventory into JSON using SaveAndLoad
+		JSONArray writeOut = saver.saveToFile(writeInventory);
 
-
-		String writeOut = writeJson.toJson(writeInventory);
-
-		System.out.println(writeOut);
-		// Compare JSON to pre-made string using toString
-
-
+		//Compare writeOut's toString() to a prebuilt JSON string
+		Assert.assertEquals("[{\"amount\":14,\"name\":\"Sourdough\",\"category\":\"dough\"},{\"amount\":7,\"name\":\"Milk\",\"category\":\"liquid\"},{\"amount\":0,\"name\":\"Chocolate Chip Dough\",\"category\":\"dough\"}]", writeOut.toString());
 	}
 
 	@Test
@@ -103,7 +100,9 @@ public class UnitTests
 		builder.addItem(testDough);
 		builder.addItem(testLiquid);
 
-		ArrayList<ArrayList<InventoryItem>> builtList = builder.buildList(); //Call buildList and assign it to a list
+		builder.buildList();
+
+		ArrayList<ArrayList<InventoryItem>> builtList = builder.getPrintingList(); //Call buildList and assign it to a list
 
 		Assert.assertEquals(7, builtList.size()); //Check overall builtList size
 		Assert.assertEquals(2, builtList.get(0).size()); //Check dough list size
