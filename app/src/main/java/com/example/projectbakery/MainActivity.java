@@ -13,9 +13,12 @@ import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+
 public class MainActivity extends AppCompatActivity
 {
 	ListBuilder builder = null;
+	SaveAndLoad saveAndLoad = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -28,16 +31,23 @@ public class MainActivity extends AppCompatActivity
 		builder.addItem(new InventoryItem("B", "liquid", 54));
 
 		builder.printList();
+
+		saveAndLoad = new SaveAndLoad();
 	}
 
-	public void saveStorage(View view)
+	public void saveStorage()
 	{
-
+		JSONArray save = saveAndLoad.createJSON(builder.getList());
+		//TODO create code to put save in the Firebase database
 	}
 
-	public void loadStorage(View view)
+	public void loadStorage()
 	{
+		String load = "";
+		//TODO create code to get load from the Firebase database
 
+		builder.setList(saveAndLoad.readJSON(load));
+		builder.printList();
 	}
 
 	public void addItem(View view)
