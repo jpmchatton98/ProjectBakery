@@ -47,7 +47,27 @@ public class ListBuilder
 
 	public void addItem(InventoryItem item)
 	{
-		masterList.add(item);
+		boolean contains = false;
+		int i;
+		for(i = 0; i < masterList.size(); i++)
+		{
+			if(masterList.get(i).getName().equals(item.getName()))
+			{
+				contains = true;
+				break;
+			}
+		}
+
+		if(contains)
+		{
+			InventoryItem modify = masterList.get(i);
+			modify.setAmount(modify.getAmount() + item.getAmount());
+			masterList.set(i, modify);
+		}
+		else
+		{
+			masterList.add(item);
+		}
 	}
 	public void deleteItem(String name)
 	{
