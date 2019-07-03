@@ -75,7 +75,15 @@ public class MainActivity extends AppCompatActivity
 			public void onClick(View v)
 			{
 				String itemName = nameInput.getText().toString();
-				int itemAmount = Integer.parseInt(amountInput.getText().toString());
+				int itemAmount = 0;
+				try
+				{
+					itemAmount = Integer.parseInt(amountInput.getText().toString());
+				}
+				catch(NumberFormatException e)
+				{
+					e.printStackTrace();
+				}
 				String itemCategory = categoryDropDown.getSelectedItem().toString().toLowerCase();
 
 				InventoryItem item = new InventoryItem(itemName, itemCategory, itemAmount);
