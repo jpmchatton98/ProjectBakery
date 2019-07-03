@@ -57,7 +57,7 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent)
+	public View getView(final int position, View convertView, ViewGroup parent)
 	{
 		final InventoryItem item = getItem(position);
 		final ViewHolder holder;
@@ -141,7 +141,7 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 			@Override
 			public void onClick(View v)
 			{
-				list.remove(item);
+				list.remove(position);
 			}
 		});
 
