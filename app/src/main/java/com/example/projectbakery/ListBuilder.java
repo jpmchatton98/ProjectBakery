@@ -69,17 +69,6 @@ public class ListBuilder
 			masterList.add(item);
 		}
 	}
-	public void deleteItem(String name)
-	{
-		for(int i = 0; i < masterList.size(); i++)
-		{
-			if(masterList.get(i).getName().equals(name))
-			{
-				masterList.remove(i);
-				break;
-			}
-		}
-	}
 
 	public void buildList() //Builds the printing list from a number of smaller lists
 	{

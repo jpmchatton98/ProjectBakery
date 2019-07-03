@@ -20,6 +20,7 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 		TextView category;
 		Button plusButton;
 		Button minusButton;
+		Button deleteButton;
 	}
 
 	private ArrayList<InventoryItem> list = null;
@@ -87,6 +88,7 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 
 		holder.plusButton = convertView.findViewById(R.id.addButton);
 		holder.minusButton = convertView.findViewById(R.id.subtractButton);
+		holder.deleteButton = convertView.findViewById(R.id.deleteButton);
 
 		final TextView amountChanger = convertView.findViewById(R.id.amountChangeInput);
 
@@ -133,6 +135,13 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 					String amountString = item.getAmount() + "";
 					holder.amount.setText(amountString);
 				}
+			}
+		});
+		holder.deleteButton.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v)
+			{
+				list.remove(item);
 			}
 		});
 
