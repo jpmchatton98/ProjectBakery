@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
@@ -21,6 +22,7 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 		ImageButton plusButton;
 		ImageButton minusButton;
 		ImageButton deleteButton;
+		ImageView alert;
 	}
 
 	private ArrayList<InventoryItem> list = null;
@@ -147,6 +149,16 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 				builder.printList();
 			}
 		});
+
+		holder.alert = convertView.findViewById(R.id.alert);
+		if(amountString.equals("0"))
+		{
+			holder.alert.setVisibility(View.VISIBLE);
+		}
+		else
+		{
+			holder.alert.setVisibility(View.INVISIBLE);
+		}
 
 		return convertView;
 	}
