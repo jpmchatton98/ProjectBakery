@@ -29,15 +29,13 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 		ImageView alert;
 	}
 
-	private ArrayList<InventoryItem> list = null;
-	private Context context;
-	private ListBuilder builder = null;
+	private ArrayList<InventoryItem> list;
+	private ListBuilder builder;
 
 	StorageListAdapter(ArrayList<InventoryItem> list, Context context, ListBuilder builder)
 	{
 		super(context, R.layout.list_item, list);
 		this.list = list;
-		this.context = context;
 		this.builder = builder;
 	}
 
