@@ -6,8 +6,16 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+/**
+ * Contains functions to control JSON parsing
+ */
 public class SaveAndLoad
 {
+	/**
+	 * Converts the master storage list into a JSONArray
+	 * @param masterList
+	 * @return
+	 */
 	public JSONArray createJSON(ArrayList<InventoryItem> masterList) //Creates the JSON from a list
 	{
 		JSONArray jsonItems = new JSONArray();
@@ -24,6 +32,12 @@ public class SaveAndLoad
 
 		return jsonItems;
 	}
+
+	/**
+	 * Converts an individual inventory item into a JSONObject
+	 * @param item
+	 * @return
+	 */
 	public JSONObject createJSONItem(InventoryItem item)
 	{
 		JSONObject jsonItem = new JSONObject();
@@ -40,6 +54,12 @@ public class SaveAndLoad
 
 		return jsonItem;
 	}
+
+	/**
+	 * Converts a string from the database into the master storage list
+	 * @param jsonString
+	 * @return
+	 */
 	public ArrayList readJSON(String jsonString) //Reads the JSON from a string and returns a new list
 	{
 		JSONArray array = null;
@@ -79,16 +99,5 @@ public class SaveAndLoad
 		}
 
 		return readInList;
-	}
-	public JSONArray saveToFile(ArrayList<InventoryItem> masterList) //Saves the JSON to the file
-	{
-		JSONArray json = createJSON(masterList);
-
-		return json;
-	}
-	public String loadFromFile() //Loads the JSON from the file
-	{
-		//TODO Create code to get JSON string from Firebase and store it in a string
-		return "";
 	}
 }

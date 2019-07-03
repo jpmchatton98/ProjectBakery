@@ -6,6 +6,10 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Contains controls to build, filter, and print the master storage list in a clean and
+ * organized way.
+ */
 public class ListBuilder
 {
 	private ArrayList<InventoryItem> masterList; //Master, unsorted list of inventory items
@@ -45,6 +49,11 @@ public class ListBuilder
 		this.masterList = masterList;
 	}
 
+	/**
+	 * Adds an item to the list, adding the requested quantity to the current item if the item
+	 * already exists in the list.
+	 * @param item
+	 */
 	public void addItem(InventoryItem item)
 	{
 		boolean contains = false;
@@ -69,6 +78,11 @@ public class ListBuilder
 			masterList.add(item);
 		}
 	}
+
+	/**
+	 * Deletes an item from the list by name.
+	 * @param name
+	 */
 	public void deleteItem(String name)
 	{
 		for(int i = 0; i < masterList.size(); i++)
@@ -81,6 +95,11 @@ public class ListBuilder
 		}
 	}
 
+	/**
+	 * Builds the list with all requested filters and searches.  Works by creating several small
+	 * lists for all different categories and then assigning the necessary lists to the larger
+	 * printing list that acts as a sorted and split master storage list.
+	 */
 	public void buildList() //Builds the printing list from a number of smaller lists
 	{
 		printingList.clear();
@@ -162,6 +181,9 @@ public class ListBuilder
 		printingList.add(miscellaneous);
 	}
 
+	/**
+	 * Uses a custom adapter to print the created list to the listView
+	 */
 	public void printList() //Prints the printing list
 	{
 		buildList();

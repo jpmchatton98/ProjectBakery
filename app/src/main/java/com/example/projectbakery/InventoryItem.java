@@ -2,6 +2,10 @@ package com.example.projectbakery;
 
 import java.util.Comparator;
 
+/**
+ * Contains variables to control aspects of an inventory item.  The name, category, and amount
+ * are the variables.
+ */
 public class InventoryItem implements Comparator<InventoryItem>
 {
 	private String name; //Actual name of the inventory item
@@ -34,8 +38,10 @@ public class InventoryItem implements Comparator<InventoryItem>
 		return amount;
 	}
 
-	//We only need setters for name and amount because category will work with
-	//radio buttons and not a text entry field
+	/**
+	 * Only setters for the name and amount are necessary, as the category is controlled by a
+	 * dropdown
+	 */
 	public void setName(String name)
 	{
 		this.name = name;
@@ -50,8 +56,14 @@ public class InventoryItem implements Comparator<InventoryItem>
 	{
 		return "Item Name: " + name + "\nItem Category: " + category + "\nAmount: " + amount;
 	}
-	//Compares by first putting any items with a zero quantity at the end and then sorting
-	//by alphabetical order with the name
+
+	/**
+	 * Compares by first putting any items with a zero quantity at the end and then sorting
+	 * by alphabetical order with the name
+	 * @param item1
+	 * @param item2
+	 * @return
+	 */
 	@Override
 	public int compare(InventoryItem item1, InventoryItem item2)
 	{

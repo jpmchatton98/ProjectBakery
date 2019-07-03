@@ -1,6 +1,5 @@
 package com.example.projectbakery;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +12,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+/**
+ * Custom adapter used to create list items and assign values to them with various buttons and
+ * icons.
+ */
 public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements ListAdapter
 {
 	class ViewHolder
@@ -61,6 +64,14 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 		this.list = list;
 	}
 
+	/**
+	 * Assigns all values to the list items and contains functions to control add, subtract, and
+	 * delete buttons, as well as an alert when the item has zero quantity.
+	 * @param position
+	 * @param convertView
+	 * @param parent
+	 * @return
+	 */
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent)
 	{

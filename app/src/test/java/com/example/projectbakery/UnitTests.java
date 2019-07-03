@@ -68,7 +68,7 @@ public class UnitTests
 		writeInventory.add(writeEmptyDough);
 
 		// Make fake inventory into JSON using SaveAndLoad
-		JSONArray writeOut = saver.saveToFile(writeInventory);
+		JSONArray writeOut = saver.createJSON(writeInventory);
 
 		//Compare writeOut's toString() to a prebuilt JSON string
 		Assert.assertEquals("[{\"amount\":14,\"name\":\"Sourdough\",\"category\":\"dough\"},{\"amount\":7,\"name\":\"Milk\",\"category\":\"liquid\"},{\"amount\":0,\"name\":\"Chocolate Chip Dough\",\"category\":\"dough\"}]", writeOut.toString());
