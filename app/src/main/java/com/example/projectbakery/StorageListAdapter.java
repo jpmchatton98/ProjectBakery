@@ -144,6 +144,7 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 			public void onClick(View v)
 			{
 				builder.deleteItem(item.getName());
+				builder.printList();
 			}
 		});
 
