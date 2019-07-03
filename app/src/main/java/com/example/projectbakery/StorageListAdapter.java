@@ -25,12 +25,14 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 
 	private ArrayList<InventoryItem> list = null;
 	private Context context;
+	private ListBuilder builder = null;
 
-	StorageListAdapter(ArrayList<InventoryItem> list, Context context)
+	StorageListAdapter(ArrayList<InventoryItem> list, Context context, ListBuilder builder)
 	{
 		super(context, R.layout.list_item, list);
 		this.list = list;
 		this.context = context;
+		this.builder = builder;
 	}
 
 	@Override
@@ -141,7 +143,7 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 			@Override
 			public void onClick(View v)
 			{
-				list.remove(position);
+				builder.deleteItem(item.getName());
 			}
 		});
 

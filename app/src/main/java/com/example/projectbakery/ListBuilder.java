@@ -69,6 +69,17 @@ public class ListBuilder
 			masterList.add(item);
 		}
 	}
+	public void deleteItem(String name)
+	{
+		for(int i = 0; i < masterList.size(); i++)
+		{
+			if(masterList.get(i).getName().equals(name))
+			{
+				masterList.remove(i);
+				break;
+			}
+		}
+	}
 
 	public void buildList() //Builds the printing list from a number of smaller lists
 	{
@@ -166,13 +177,15 @@ public class ListBuilder
 			}
 		}
 
+		final ListBuilder thisThing = this;
+
 		mainActivity.runOnUiThread(new Runnable()
 		{
 			public void run()
 			{
 				if(adapter == null)
 				{
-					adapter = new StorageListAdapter(singlePrintingList, mainActivity);
+					adapter = new StorageListAdapter(singlePrintingList, mainActivity, thisThing);
 					listView.setAdapter(adapter);
 				}
 				else
