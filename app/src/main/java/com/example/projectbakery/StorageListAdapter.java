@@ -29,9 +29,8 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 	private ArrayList<InventoryItem> list = null;
 	private Context context;
 	private ListBuilder builder = null;
-	private Activity mainActivity;
 
-	StorageListAdapter(ArrayList<InventoryItem> list, Context context, ListBuilder builder, Activity mainActivity)
+	StorageListAdapter(ArrayList<InventoryItem> list, Context context, ListBuilder builder)
 	{
 		super(context, R.layout.list_item, list);
 		this.list = list;
@@ -156,25 +155,13 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 		holder.alert = convertView.findViewById(R.id.alert);
 		if(amountString.equals("0"))
 		{
-			mainActivity.runOnUiThread(new Runnable(){
-
-				@Override
-				public void run()
-				{
-					holder.alert.setVisibility(View.VISIBLE);
-				}
-			});
+			holder.alert.setVisibility(View.VISIBLE);
+			builder.printList();
 		}
 		else
 		{
-			mainActivity.runOnUiThread(new Runnable(){
-
-				@Override
-				public void run()
-				{
-					holder.alert.setVisibility(View.INVISIBLE);
-				}
-			});
+			holder.alert.setVisibility(View.INVISIBLE);
+			builder.printList();
 		}
 
 		return convertView;
