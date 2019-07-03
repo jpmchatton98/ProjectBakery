@@ -1,5 +1,6 @@
 package com.example.projectbakery;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,13 +29,15 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 	private ArrayList<InventoryItem> list = null;
 	private Context context;
 	private ListBuilder builder = null;
+	private Activity mainActivity;
 
-	StorageListAdapter(ArrayList<InventoryItem> list, Context context, ListBuilder builder)
+	StorageListAdapter(ArrayList<InventoryItem> list, Context context, ListBuilder builder, Activity mainActivity)
 	{
 		super(context, R.layout.list_item, list);
 		this.list = list;
 		this.context = context;
 		this.builder = builder;
+		this.mainActivity = mainActivity;
 	}
 
 	@Override
@@ -153,11 +156,25 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 		holder.alert = convertView.findViewById(R.id.alert);
 		if(amountString.equals("0"))
 		{
-			holder.alert.setVisibility(View.VISIBLE);
+			mainActivity.runOnUiThread(new Runnable(){
+
+				@Override
+				public void run()
+				{
+					holder.alert.setVisibility(View.VISIBLE);
+				}
+			});
 		}
 		else
 		{
-			holder.alert.setVisibility(View.INVISIBLE);
+			mainActivity.runOnUiThread(new Runnable(){
+
+				@Override
+				public void run()
+				{
+					holder.alert.setVisibility(View.INVISIBLE);
+				}
+			});
 		}
 
 		return convertView;
