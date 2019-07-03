@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
@@ -18,9 +18,9 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 		TextView name;
 		TextView amount;
 		TextView category;
-		Button plusButton;
-		Button minusButton;
-		Button deleteButton;
+		ImageButton plusButton;
+		ImageButton minusButton;
+		ImageButton deleteButton;
 	}
 
 	private ArrayList<InventoryItem> list = null;
