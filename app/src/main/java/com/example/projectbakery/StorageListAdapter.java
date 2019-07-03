@@ -36,7 +36,6 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 		this.list = list;
 		this.context = context;
 		this.builder = builder;
-		this.mainActivity = mainActivity;
 	}
 
 	@Override
