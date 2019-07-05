@@ -43,14 +43,13 @@
         android:id="@+id/amountChangeInput"
         android:layout_width="60dp"
         android:layout_height="39dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginBottom="4dp"
         android:ems="10"
         android:inputType="number"
         android:textAlignment="center"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/addButton" />
+        tools:layout_editor_absoluteX="237dp" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -69,42 +68,43 @@
         android:id="@+id/addButton"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:layout_marginEnd="2dp"
         android:layout_marginBottom="8dp"
         android:backgroundTint="#00FFFFFF"
         android:scaleType="center"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/subtractButton"
+        app:layout_constraintEnd_toStartOf="@+id/amountChangeInput"
         app:srcCompat="@android:drawable/ic_input_add" />
 
     <ImageButton
         android:id="@+id/subtractButton"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="88dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/amountChangeInput"
         app:srcCompat="@android:drawable/ic_delete" />
 
     <ImageButton
         android:id="@+id/deleteButton"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="56dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_delete" />
 
     <ImageView
         android:id="@+id/alert"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/presence_busy" />
 
 </android.support.constraint.ConstraintLayout>
