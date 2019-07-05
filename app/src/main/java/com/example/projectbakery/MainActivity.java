@@ -153,13 +153,13 @@ public class MainActivity extends AppCompatActivity
 			@Override
 			public void onClick(View v)
 			{
-				filters.add(doughsFilter.isActivated());
-				filters.add(liquidsFilter.isActivated());
-				filters.add(breadsFilter.isActivated());
-				filters.add(muffinsFilter.isActivated());
-				filters.add(dessertsFilter.isActivated());
-				filters.add(ingredientsFilter.isActivated());
-				filters.add(miscellaneousFilter.isActivated());
+				filters.add(doughsFilter.isChecked());
+				filters.add(liquidsFilter.isChecked());
+				filters.add(breadsFilter.isChecked());
+				filters.add(muffinsFilter.isChecked());
+				filters.add(dessertsFilter.isChecked());
+				filters.add(ingredientsFilter.isChecked());
+				filters.add(miscellaneousFilter.isChecked());
 
 				filters.add(false);
 
