@@ -56,22 +56,6 @@ public class UnitTests
 
 		//TODO: Test JSON writing: Dale
 
-		// Create fake inventory items
-		InventoryItem writeDough = new InventoryItem("Sourdough", "dough", 14); // make items
-		InventoryItem writeLiquid = new InventoryItem ("Milk", "liquid", 7);
-		InventoryItem writeEmptyDough = new InventoryItem("Chocolate Chip Dough", "dough", 0);
-
-		//Add fake inventory items to a pseudo-masterList
-		ArrayList<InventoryItem> writeInventory = new ArrayList<>();
-		writeInventory.add(writeDough);
-		writeInventory.add(writeLiquid);
-		writeInventory.add(writeEmptyDough);
-
-		// Make fake inventory into JSON using SaveAndLoad
-		JSONArray writeOut = saver.createJSON(writeInventory);
-
-		//Compare writeOut's toString() to a prebuilt JSON string
-		Assert.assertEquals("[{\"amount\":14,\"name\":\"Sourdough\",\"category\":\"dough\"},{\"amount\":7,\"name\":\"Milk\",\"category\":\"liquid\"},{\"amount\":0,\"name\":\"Chocolate Chip Dough\",\"category\":\"dough\"}]", writeOut.toString());
 	}
 
 	@Test
