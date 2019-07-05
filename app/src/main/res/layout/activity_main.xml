@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
-    android:layout_height="700dp"
+    android:layout_height="fill_parent"
     android:orientation="vertical">
 
     <LinearLayout
@@ -56,13 +56,11 @@
 
     <ListView
         android:id="@+id/itemList"
-        android:layout_width="370dp"
-        android:layout_height="300dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="fill_parent"
+        android:layout_height="350dp"
+        android:layout_marginTop="5dp"
         android:layout_weight="1"
-        android:background="#A26F33"
+        android:background="#00A26F33"
         android:elevation="-3dp" />
 
 </LinearLayout>
