@@ -8,6 +8,8 @@ import android.widget.*;
 
 import org.json.JSONArray;
 
+import java.util.ArrayList;
+
 /**
  * Primary UI Activity
  */
@@ -122,6 +124,9 @@ public class MainActivity extends AppCompatActivity
 	 */
 	public void filterItems(View view)
 	{
+		ArrayList<Boolean> filters = new ArrayList<>();
 		//TODO Create dropdown window with radio buttons for filters and assign the filters to the list
+
+		builder.printList(filters);
 	}
 }
