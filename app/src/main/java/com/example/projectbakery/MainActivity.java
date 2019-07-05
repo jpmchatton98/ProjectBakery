@@ -161,6 +161,8 @@ public class MainActivity extends AppCompatActivity
 				filters.add(ingredientsFilter.isActivated());
 				filters.add(miscellaneousFilter.isActivated());
 
+				filters.add(false);
+
 				builder.printList(filters);
 
 				window.dismiss();

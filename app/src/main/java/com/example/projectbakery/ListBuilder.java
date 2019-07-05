@@ -201,7 +201,7 @@ public class ListBuilder
 			{
 				case "dough":
 				{
-					if(filters.get(6).booleanValue())
+					if(filters.get(7).booleanValue())
 					{
 						if(current.getAmount() <= 0)
 						{
@@ -216,7 +216,7 @@ public class ListBuilder
 				}
 				case "liquid":
 				{
-					if(filters.get(6).booleanValue())
+					if(filters.get(7).booleanValue())
 					{
 						if(current.getAmount() <= 0)
 						{
@@ -231,7 +231,7 @@ public class ListBuilder
 				}
 				case "bread":
 				{
-					if(filters.get(6).booleanValue())
+					if(filters.get(7).booleanValue())
 					{
 						if(current.getAmount() <= 0)
 						{
@@ -246,7 +246,7 @@ public class ListBuilder
 				}
 				case "muffin":
 				{
-					if(filters.get(6).booleanValue())
+					if(filters.get(7).booleanValue())
 					{
 						if(current.getAmount() <= 0)
 						{
@@ -261,7 +261,7 @@ public class ListBuilder
 				}
 				case "dessert":
 				{
-					if(filters.get(6).booleanValue())
+					if(filters.get(7).booleanValue())
 					{
 						if(current.getAmount() <= 0)
 						{
@@ -276,7 +276,7 @@ public class ListBuilder
 				}
 				case "ingredient":
 				{
-					if(filters.get(6).booleanValue())
+					if(filters.get(7).booleanValue())
 					{
 						if(current.getAmount() <= 0)
 						{
@@ -291,7 +291,7 @@ public class ListBuilder
 				}
 				case "miscellaneous":
 				{
-					if(filters.get(6).booleanValue())
+					if(filters.get(7).booleanValue())
 					{
 						if(current.getAmount() <= 0)
 						{
