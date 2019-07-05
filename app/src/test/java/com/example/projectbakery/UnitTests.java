@@ -84,6 +84,12 @@ public class UnitTests
 		testItems.add(new InventoryItem("Chocolate Chip Dough", "dough", 4));
 		testItems.add(new InventoryItem("Kiaser Buns","Carter",121));
 
+		SaveAndLoad save = new SaveAndLoad();
+
+		JSONArray inventoryList = new JSONArray();
+		inventoryList = save.createJSON(testItems);
+
+		System.out.println(inventoryList.toString());
 	}
 
 	@Test
