@@ -89,7 +89,11 @@ public class UnitTests
 		JSONArray inventoryList = new JSONArray();
 		inventoryList = save.createJSON(testItems);
 
-		System.out.println(inventoryList.toString());
+		String json = inventoryList.toString();
+
+		String jsonTemplate = "[{\"amount\":14,\"name\":\"Sourdough\",\"category\":\"dough\"},{\"amount\":7,\"name\":\"Milk\",\"category\":\"liquid\"},{\"amount\":4,\"name\":\"Chocolate Chip Dough\",\"category\":\"dough\"},{\"amount\":121,\"name\":\"Kiaser Buns\",\"category\":\"Carter\"}]";
+
+		Assert.assertEquals(jsonTemplate , json);
 	}
 
 	@Test
