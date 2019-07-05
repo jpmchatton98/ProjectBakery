@@ -25,8 +25,10 @@ public class MainActivity extends AppCompatActivity
 		setContentView(R.layout.activity_main);
 
 		builder = new ListBuilder((ListView) findViewById(R.id.itemList), this);
-		builder.addItem(new InventoryItem("A", "dough", 60));
-		builder.addItem(new InventoryItem("B", "liquid", 54));
+		builder.addItem(new InventoryItem("Non-Empty Dough", "dough", 60));
+		builder.addItem(new InventoryItem("Empty Dough", "dough", 0));
+		builder.addItem(new InventoryItem("Non-Empty Liquid", "liquid", 54));
+		builder.addItem(new InventoryItem("Empty Item", "muffin", 0));
 
 		builder.printList();
 
@@ -146,6 +148,7 @@ public class MainActivity extends AppCompatActivity
 		final Switch dessertsFilter = popUpView.findViewById(R.id.dessertsFilter);
 		final Switch ingredientsFilter = popUpView.findViewById(R.id.ingredientsFilter);
 		final Switch miscellaneousFilter = popUpView.findViewById(R.id.miscellaneousFilter);
+		final Switch outFilter = popUpView.findViewById(R.id.outFilter);
 
 		final Button confirmButton = popUpView.findViewById(R.id.filterConfirmButton);
 
@@ -161,7 +164,7 @@ public class MainActivity extends AppCompatActivity
 				filters.add(ingredientsFilter.isChecked());
 				filters.add(miscellaneousFilter.isChecked());
 
-				filters.add(false);
+				filters.add(outFilter.isChecked());
 
 				builder.printList(filters);
 

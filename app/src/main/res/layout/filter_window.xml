@@ -105,4 +105,14 @@
         android:text="Confirm"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/miscellaneousFilter" />
+
+    <Switch
+        android:id="@+id/outFilter"
+        android:layout_width="135dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="Out"
+        app:layout_constraintStart_toEndOf="@+id/miscellaneousFilter"
+        app:layout_constraintTop_toBottomOf="@+id/ingredientsFilter" />
 </android.support.constraint.ConstraintLayout>
