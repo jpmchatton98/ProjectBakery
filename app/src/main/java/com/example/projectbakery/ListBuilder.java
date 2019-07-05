@@ -180,6 +180,107 @@ public class ListBuilder
 		printingList.add(ingredients);
 		printingList.add(miscellaneous);
 	}
+	public void buildList(String query) //Builds the printing list from a number of smaller lists with searching
+	{
+		printingList.clear();
+
+		//Smaller lists by category
+		ArrayList<InventoryItem> doughs = new ArrayList<>();
+		ArrayList<InventoryItem> liquids = new ArrayList<>();
+		ArrayList<InventoryItem> breads = new ArrayList<>();
+		ArrayList<InventoryItem> muffins = new ArrayList<>();
+		ArrayList<InventoryItem> desserts = new ArrayList<>();
+		ArrayList<InventoryItem> ingredients = new ArrayList<>();
+		ArrayList<InventoryItem> miscellaneous = new ArrayList<>();
+
+		for (int i = 0; i < masterList.size(); i++) //Fill the smaller lists
+		{
+			InventoryItem current = masterList.get(i);
+
+			switch (current.getCategory())
+			{
+				case "dough":
+				{
+					if(current.getName().contains(query))
+					{
+						doughs.add(current);
+					}
+					break;
+				}
+				case "liquid":
+				{
+					if(current.getName().contains(query))
+					{
+						liquids.add(current);
+					}
+					break;
+				}
+				case "bread":
+				{
+					if(current.getName().contains(query))
+					{
+						breads.add(current);
+					}
+					break;
+				}
+				case "muffin":
+				{
+					if(current.getName().contains(query))
+					{
+						muffins.add(current);
+					}
+					break;
+				}
+				case "dessert":
+				{
+					if(current.getName().contains(query))
+					{
+						desserts.add(current);
+					}
+					break;
+				}
+				case "ingredient":
+				{
+					if(current.getName().contains(query))
+					{
+						ingredients.add(current);
+					}
+					break;
+				}
+				case "miscellaneous":
+				{
+					if(current.getName().contains(query))
+					{
+						miscellaneous.add(current);
+					}
+					break;
+				}
+				default: //This should never happen
+				{
+					System.out.println("How did you get here?");
+					break;
+				}
+			}
+		}
+
+		//Sort the smaller lists
+		Collections.sort(doughs, new InventoryItem());
+		Collections.sort(liquids, new InventoryItem());
+		Collections.sort(breads, new InventoryItem());
+		Collections.sort(muffins, new InventoryItem());
+		Collections.sort(desserts, new InventoryItem());
+		Collections.sort(ingredients, new InventoryItem());
+		Collections.sort(miscellaneous, new InventoryItem());
+
+		//Add the smaller lists to the printing list
+		printingList.add(doughs);
+		printingList.add(liquids);
+		printingList.add(breads);
+		printingList.add(muffins);
+		printingList.add(desserts);
+		printingList.add(ingredients);
+		printingList.add(miscellaneous);
+	}
 
 	/**
 	 * Uses a custom adapter to print the created list to the listView
@@ -220,6 +321,44 @@ public class ListBuilder
 				}
 			}
 		}
+		);
+	}
+	public void printList(String query) //Prints the printing list
+	{
+		buildList(query);
+
+		final ArrayList<InventoryItem> singlePrintingList = new ArrayList<>();
+
+		//For now, this prints to the console, however we need to modify this to print to the ListView later on
+		for (int i = 0; i < printingList.size(); i++)
+		{
+			for (int j = 0; j < printingList.get(i).size(); j++)
+			{
+				singlePrintingList.add(printingList.get(i).get(j));
+			}
+		}
+
+		final ListBuilder thisThing = this;
+
+		mainActivity.runOnUiThread(new Runnable()
+			{
+				public void run()
+				{
+				if(adapter == null)
+				{
+					adapter = new StorageListAdapter(singlePrintingList, mainActivity, thisThing);
+					listView.setAdapter(adapter);
+				}
+				else
+				{
+					adapter.setList(singlePrintingList);
+
+					adapter.notifyDataSetChanged();
+					listView.invalidateViews();
+					listView.refreshDrawableState();
+				}
+				}
+			}
 		);
 	}
 }

@@ -111,7 +111,8 @@ public class MainActivity extends AppCompatActivity
 	{
 		TextView searchBox = findViewById(R.id.searchBox);
 		String query = searchBox.getText().toString();
-		//TODO Assign query String to the list to search by item name
+
+		builder.printList(query);
 	}
 
 	/**
