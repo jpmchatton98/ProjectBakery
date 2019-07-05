@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="350dp"
+    android:layout_height="500dp">
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="350dp"
+        android:layout_height="500dp"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/background" />
+
+    <TextView
+        android:id="@+id/filtersLabel"
+        android:layout_width="295dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="Select Filters"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+    <Switch
+        android:id="@+id/liquidsFilter"
+        android:layout_width="135dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="Liquids"
+        app:layout_constraintStart_toEndOf="@+id/doughsFilter"
+        app:layout_constraintTop_toBottomOf="@+id/filtersLabel" />
+
+    <Switch
+        android:id="@+id/doughsFilter"
+        android:layout_width="135dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Doughs"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filtersLabel" />
+
+    <Switch
+        android:id="@+id/breadsFilter"
+        android:layout_width="135dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Breads"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/doughsFilter" />
+
+    <Switch
+        android:id="@+id/muffinsFilter"
+        android:layout_width="135dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="Muffins"
+        app:layout_constraintStart_toEndOf="@+id/breadsFilter"
+        app:layout_constraintTop_toBottomOf="@+id/liquidsFilter" />
+
+    <Switch
+        android:id="@+id/dessertsFilter"
+        android:layout_width="135dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Desserts"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/breadsFilter" />
+
+    <Switch
+        android:id="@+id/ingredientsFilter"
+        android:layout_width="135dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="Ingredients"
+        app:layout_constraintStart_toEndOf="@+id/dessertsFilter"
+        app:layout_constraintTop_toBottomOf="@+id/muffinsFilter" />
+
+    <Switch
+        android:id="@+id/miscellaneousFilter"
+        android:layout_width="135dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Miscellaneous"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/dessertsFilter" />
+
+    <Button
+        android:id="@+id/filterConfirmButton"
+        android:layout_width="135dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="Confirm"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/miscellaneousFilter" />
+</android.support.constraint.ConstraintLayout>

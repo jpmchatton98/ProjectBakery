@@ -124,9 +124,47 @@ public class MainActivity extends AppCompatActivity
 	 */
 	public void filterItems(View view)
 	{
-		ArrayList<Boolean> filters = new ArrayList<>();
+		final ArrayList<Boolean> filters = new ArrayList<>();
 		//TODO Create dropdown window with radio buttons for filters and assign the filters to the list
 
-		builder.printList(filters);
+		LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View popupView = inflater.inflate(R.layout.filter_window, null);
+
+		int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+		int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+
+		boolean focusable = true;
+		final PopupWindow window = new PopupWindow(popupView, width, height, focusable);
+
+		window.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+		View popUpView = window.getContentView();
+		final Switch doughsFilter = popUpView.findViewById(R.id.doughsFilter);
+		final Switch liquidsFilter = popUpView.findViewById(R.id.liquidsFilter);
+		final Switch breadsFilter = popUpView.findViewById(R.id.breadsFilter);
+		final Switch muffinsFilter = popUpView.findViewById(R.id.muffinsFilter);
+		final Switch dessertsFilter = popUpView.findViewById(R.id.dessertsFilter);
+		final Switch ingredientsFilter = popUpView.findViewById(R.id.ingredientsFilter);
+		final Switch miscellaneousFilter = popUpView.findViewById(R.id.miscellaneousFilter);
+
+		final Button confirmButton = popUpView.findViewById(R.id.filterConfirmButton);
+
+		confirmButton.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v)
+			{
+				filters.add(doughsFilter.isActivated());
+				filters.add(liquidsFilter.isActivated());
+				filters.add(breadsFilter.isActivated());
+				filters.add(muffinsFilter.isActivated());
+				filters.add(dessertsFilter.isActivated());
+				filters.add(ingredientsFilter.isActivated());
+				filters.add(miscellaneousFilter.isActivated());
+
+				builder.printList(filters);
+
+				window.dismiss();
+			}
+		});
 	}
 }
