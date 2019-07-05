@@ -77,7 +77,6 @@ public class UnitTests
 	@Test
 	public void JSONreader()
 	{
-		//TODO: Test JSON reading: Josh
 		ArrayList<InventoryItem> testItems = new ArrayList<>();
 		testItems.add(new InventoryItem("Sourdough", "dough", 14));
 		testItems.add(new InventoryItem("Milk", "liquid", 7));
@@ -86,14 +85,17 @@ public class UnitTests
 
 		SaveAndLoad save = new SaveAndLoad();
 
-		JSONArray inventoryList = new JSONArray();
-		inventoryList = save.createJSON(testItems);
+		JSONArray inventoryList = save.createJSON(testItems);
 
 		String json = inventoryList.toString();
 
 		String jsonTemplate = "[{\"amount\":14,\"name\":\"Sourdough\",\"category\":\"dough\"},{\"amount\":7,\"name\":\"Milk\",\"category\":\"liquid\"},{\"amount\":4,\"name\":\"Chocolate Chip Dough\",\"category\":\"dough\"},{\"amount\":121,\"name\":\"Kiaser Buns\",\"category\":\"Carter\"}]";
 
 		Assert.assertEquals(jsonTemplate , json);
+
+		ArrayList<InventoryItem> readTest = save.readJSON(json);
+
+		Assert.assertEquals(testItems.toString(), readTest.toString());
 	}
 
 	@Test
