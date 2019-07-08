@@ -387,7 +387,7 @@ public class ListBuilder
 			{
 				case "dough":
 				{
-					if(current.getName().contains(query))
+					if(current.getName().toUpperCase().contains(query.toUpperCase()))
 					{
 						doughs.add(current);
 					}
@@ -395,7 +395,7 @@ public class ListBuilder
 				}
 				case "liquid":
 				{
-					if(current.getName().contains(query))
+					if(current.getName().toUpperCase().contains(query.toUpperCase()))
 					{
 						liquids.add(current);
 					}
@@ -403,7 +403,7 @@ public class ListBuilder
 				}
 				case "bread":
 				{
-					if(current.getName().contains(query))
+					if(current.getName().toUpperCase().contains(query.toUpperCase()))
 					{
 						breads.add(current);
 					}
@@ -411,7 +411,7 @@ public class ListBuilder
 				}
 				case "muffin":
 				{
-					if(current.getName().contains(query))
+					if(current.getName().toUpperCase().contains(query.toUpperCase()))
 					{
 						muffins.add(current);
 					}
@@ -419,7 +419,7 @@ public class ListBuilder
 				}
 				case "dessert":
 				{
-					if(current.getName().contains(query))
+					if(current.getName().toUpperCase().contains(query.toUpperCase()))
 					{
 						desserts.add(current);
 					}
@@ -427,7 +427,7 @@ public class ListBuilder
 				}
 				case "ingredient":
 				{
-					if(current.getName().contains(query))
+					if(current.getName().toUpperCase().contains(query.toUpperCase()))
 					{
 						ingredients.add(current);
 					}
@@ -435,7 +435,7 @@ public class ListBuilder
 				}
 				case "miscellaneous":
 				{
-					if(current.getName().contains(query))
+					if(current.getName().toUpperCase().contains(query.toUpperCase()))
 					{
 						miscellaneous.add(current);
 					}
@@ -488,7 +488,7 @@ public class ListBuilder
 			{
 				case "dough":
 				{
-					if(current.getName().contains(query))
+					if(current.getName().toUpperCase().contains(query.toUpperCase()))
 					{
 						if(filters.get(7).booleanValue())
 						{
@@ -506,7 +506,7 @@ public class ListBuilder
 				}
 				case "liquid":
 				{
-					if(current.getName().contains(query))
+					if(current.getName().toUpperCase().contains(query.toUpperCase()))
 					{
 						if(filters.get(7).booleanValue())
 						{
@@ -524,7 +524,7 @@ public class ListBuilder
 				}
 				case "bread":
 				{
-					if(current.getName().contains(query))
+					if(current.getName().toUpperCase().contains(query.toUpperCase()))
 					{
 						if(filters.get(7).booleanValue())
 						{
@@ -542,7 +542,7 @@ public class ListBuilder
 				}
 				case "muffin":
 				{
-					if(current.getName().contains(query))
+					if(current.getName().toUpperCase().contains(query.toUpperCase()))
 					{
 						if(filters.get(7).booleanValue())
 						{
@@ -560,7 +560,7 @@ public class ListBuilder
 				}
 				case "dessert":
 				{
-					if(current.getName().contains(query))
+					if(current.getName().toUpperCase().contains(query.toUpperCase()))
 					{
 						if(filters.get(7).booleanValue())
 						{
@@ -578,7 +578,7 @@ public class ListBuilder
 				}
 				case "ingredient":
 				{
-					if(current.getName().contains(query))
+					if(current.getName().toUpperCase().contains(query.toUpperCase()))
 					{
 						if(filters.get(7).booleanValue())
 						{
@@ -596,7 +596,7 @@ public class ListBuilder
 				}
 				case "miscellaneous":
 				{
-					if(current.getName().contains(query))
+					if(current.getName().toUpperCase().contains(query.toUpperCase()))
 					{
 						if(filters.get(7).booleanValue())
 						{

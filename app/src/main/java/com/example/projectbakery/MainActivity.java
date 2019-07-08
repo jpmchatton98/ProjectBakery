@@ -191,6 +191,8 @@ public class MainActivity extends AppCompatActivity
 			ingredientsFilter.setChecked(filters.get(5));
 			miscellaneousFilter.setChecked(filters.get(6));
 			outFilter.setChecked(filters.get(7));
+
+			filters.clear();
 		}
 		else
 		{
