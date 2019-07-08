@@ -221,16 +221,19 @@ public class MainActivity extends AppCompatActivity
 
 		if(filters != null)
 		{
-			doughsFilter.setChecked(filters.get(0));
-			liquidsFilter.setChecked(filters.get(1));
-			breadsFilter.setChecked(filters.get(2));
-			muffinsFilter.setChecked(filters.get(3));
-			dessertsFilter.setChecked(filters.get(4));
-			ingredientsFilter.setChecked(filters.get(5));
-			miscellaneousFilter.setChecked(filters.get(6));
-			outFilter.setChecked(filters.get(7));
+			if(filters.size() != 0)
+			{
+				doughsFilter.setChecked(filters.get(0));
+				liquidsFilter.setChecked(filters.get(1));
+				breadsFilter.setChecked(filters.get(2));
+				muffinsFilter.setChecked(filters.get(3));
+				dessertsFilter.setChecked(filters.get(4));
+				ingredientsFilter.setChecked(filters.get(5));
+				miscellaneousFilter.setChecked(filters.get(6));
+				outFilter.setChecked(filters.get(7));
 
-			filters.clear();
+				filters.clear();
+			}
 		}
 		else
 		{
