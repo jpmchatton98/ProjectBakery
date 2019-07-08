@@ -52,10 +52,21 @@ public class UnitTests
 	@Test
 	public void JSONwriter()
 	{
+		ArrayList<InventoryItem> writeItems = new ArrayList<>(); //Array for inventory items
+
+		writeItems.add(new InventoryItem("Snickerdoodle", "cookie dough", 24)); //Inventory items
+		writeItems.add(new InventoryItem("Bannana Nut", "muffin", 16));
+		writeItems.add(new InventoryItem("Nintendo Switch", "electronics", 3));
+		writeItems.add(new InventoryItem("mile sfoglie", "pasticcino", 1));
+
 		SaveAndLoad saver = new SaveAndLoad(); //SaveAndLoad for JSON creation
 
-		//TODO: Test JSON writing: Dale
+		JSONArray writeList = saver.createJSON(writeItems);
 
+		String testJSON = writeList.toString();
+		String actualJSON = "test JSON here";
+
+		Assert.assertEquals(testJSON, actualJSON);
 	}
 
 	@Test
@@ -73,7 +84,7 @@ public class UnitTests
 
 		String json = inventoryList.toString();
 
-		String jsonTemplate = "[{\"amount\":14,\"name\":\"Sourdough\",\"category\":\"dough\"},{\"amount\":7,\"name\":\"Milk\",\"category\":\"liquid\"},{\"amount\":4,\"name\":\"Chocolate Chip Dough\",\"category\":\"dough\"},{\"amount\":121,\"name\":\"Kiaser Buns\",\"category\":\"Carter\"}]";
+		String jsonTemplate = "[{\"amount\":14,\"name\":\"Sourdough\",\"category\":\"dough\"},{\"amount\":7,\"name\":\"Milk\",\"category\":\"liquid\"},{\"amount\":4,\"name\":\"C\"[{\\\"amount\\\":14,\\\"name\\\":\\\"Sourdough\\\",\\\"category\\\":\\\"dough\\\"},{\\\"amount\\\":7,\\\"name\\\":\\\"Milk\\\",\\\"category\\\":\\\"liquid\\\"},{\\\"amount\\\":4,\\\"name\\\":\\\"Chocolate Chip Dough\",\"category\":\"dough\"},{\"amount\":121,\"name\":\"Kiaser Buns\",\"category\":\"Carter\"}]";
 
 		Assert.assertEquals(jsonTemplate , json);
 
