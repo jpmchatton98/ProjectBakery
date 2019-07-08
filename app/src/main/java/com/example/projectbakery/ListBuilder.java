@@ -379,6 +379,8 @@ public class ListBuilder
 		ArrayList<InventoryItem> ingredients = new ArrayList<>();
 		ArrayList<InventoryItem> miscellaneous = new ArrayList<>();
 
+		query = query.toUpperCase();
+
 		for (int i = 0; i < masterList.size(); i++) //Fill the smaller lists
 		{
 			InventoryItem current = masterList.get(i);
@@ -387,7 +389,7 @@ public class ListBuilder
 			{
 				case "dough":
 				{
-					if(current.getName().toUpperCase().contains(query.toUpperCase()))
+					if((current.getName().toUpperCase()).contains(query))
 					{
 						doughs.add(current);
 					}
@@ -395,7 +397,7 @@ public class ListBuilder
 				}
 				case "liquid":
 				{
-					if(current.getName().toUpperCase().contains(query.toUpperCase()))
+					if((current.getName().toUpperCase()).contains(query))
 					{
 						liquids.add(current);
 					}
@@ -403,7 +405,7 @@ public class ListBuilder
 				}
 				case "bread":
 				{
-					if(current.getName().toUpperCase().contains(query.toUpperCase()))
+					if((current.getName().toUpperCase()).contains(query))
 					{
 						breads.add(current);
 					}
@@ -411,7 +413,7 @@ public class ListBuilder
 				}
 				case "muffin":
 				{
-					if(current.getName().toUpperCase().contains(query.toUpperCase()))
+					if((current.getName().toUpperCase()).contains(query))
 					{
 						muffins.add(current);
 					}
@@ -419,7 +421,7 @@ public class ListBuilder
 				}
 				case "dessert":
 				{
-					if(current.getName().toUpperCase().contains(query.toUpperCase()))
+					if((current.getName().toUpperCase()).contains(query))
 					{
 						desserts.add(current);
 					}
@@ -427,7 +429,7 @@ public class ListBuilder
 				}
 				case "ingredient":
 				{
-					if(current.getName().toUpperCase().contains(query.toUpperCase()))
+					if((current.getName().toUpperCase()).contains(query))
 					{
 						ingredients.add(current);
 					}
@@ -435,7 +437,7 @@ public class ListBuilder
 				}
 				case "miscellaneous":
 				{
-					if(current.getName().toUpperCase().contains(query.toUpperCase()))
+					if((current.getName().toUpperCase()).contains(query))
 					{
 						miscellaneous.add(current);
 					}
@@ -480,6 +482,8 @@ public class ListBuilder
 		ArrayList<InventoryItem> ingredients = new ArrayList<>();
 		ArrayList<InventoryItem> miscellaneous = new ArrayList<>();
 
+		query = query.toUpperCase();
+
 		for (int i = 0; i < masterList.size(); i++) //Fill the smaller lists
 		{
 			InventoryItem current = masterList.get(i);
@@ -488,7 +492,7 @@ public class ListBuilder
 			{
 				case "dough":
 				{
-					if(current.getName().toUpperCase().contains(query.toUpperCase()))
+					if((current.getName().toUpperCase()).contains(query))
 					{
 						if(filters.get(7).booleanValue())
 						{
@@ -506,7 +510,7 @@ public class ListBuilder
 				}
 				case "liquid":
 				{
-					if(current.getName().toUpperCase().contains(query.toUpperCase()))
+					if((current.getName().toUpperCase()).contains(query))
 					{
 						if(filters.get(7).booleanValue())
 						{
@@ -524,7 +528,7 @@ public class ListBuilder
 				}
 				case "bread":
 				{
-					if(current.getName().toUpperCase().contains(query.toUpperCase()))
+					if((current.getName().toUpperCase()).contains(query))
 					{
 						if(filters.get(7).booleanValue())
 						{
@@ -542,7 +546,7 @@ public class ListBuilder
 				}
 				case "muffin":
 				{
-					if(current.getName().toUpperCase().contains(query.toUpperCase()))
+					if((current.getName().toUpperCase()).contains(query))
 					{
 						if(filters.get(7).booleanValue())
 						{
@@ -560,7 +564,7 @@ public class ListBuilder
 				}
 				case "dessert":
 				{
-					if(current.getName().toUpperCase().contains(query.toUpperCase()))
+					if((current.getName().toUpperCase()).contains(query))
 					{
 						if(filters.get(7).booleanValue())
 						{
@@ -578,7 +582,7 @@ public class ListBuilder
 				}
 				case "ingredient":
 				{
-					if(current.getName().toUpperCase().contains(query.toUpperCase()))
+					if((current.getName().toUpperCase()).contains(query))
 					{
 						if(filters.get(7).booleanValue())
 						{
@@ -596,7 +600,7 @@ public class ListBuilder
 				}
 				case "miscellaneous":
 				{
-					if(current.getName().toUpperCase().contains(query.toUpperCase()))
+					if((current.getName().toUpperCase()).contains(query))
 					{
 						if(filters.get(7).booleanValue())
 						{
