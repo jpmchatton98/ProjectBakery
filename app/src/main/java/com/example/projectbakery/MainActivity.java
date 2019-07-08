@@ -116,7 +116,42 @@ public class MainActivity extends AppCompatActivity
 
 				InventoryItem item = new InventoryItem(itemName, itemCategory, itemAmount);
 				builder.addItem(item);
-				builder.printList();
+
+				boolean filtered = false;
+				boolean searched = false;
+
+				if(filters != null)
+				{
+					for (int i = 0; i < filters.size(); i++)
+					{
+						if (filters.get(i).booleanValue())
+						{
+							filtered = true;
+							break;
+						}
+					}
+				}
+				if (query != "")
+				{
+					searched = true;
+				}
+
+				if(!filtered && !searched)
+				{
+					builder.printList();
+				}
+				else if(filtered && !searched)
+				{
+					builder.printList(filters);
+				}
+				else if(!filtered && searched)
+				{
+					builder.printList(query);
+				}
+				else
+				{
+					builder.printList(query, filters);
+				}
 
 				window.dismiss();
 			}
