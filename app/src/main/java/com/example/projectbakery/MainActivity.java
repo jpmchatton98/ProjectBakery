@@ -118,8 +118,6 @@ public class MainActivity extends AppCompatActivity
 				builder.addItem(item);
 
 				boolean filtered = false;
-				boolean searched = false;
-
 				if(filters != null)
 				{
 					for (int i = 0; i < filters.size(); i++)
@@ -131,27 +129,16 @@ public class MainActivity extends AppCompatActivity
 						}
 					}
 				}
-				if (query != "")
+				if(filtered)
 				{
-					searched = true;
+					builder.setFilters(filters);
+				}
+				if(!query.equals(""))
+				{
+					builder.setQuery(query);
 				}
 
-				if(!filtered && !searched)
-				{
-					builder.printList();
-				}
-				else if(filtered && !searched)
-				{
-					builder.printList(filters);
-				}
-				else if(!filtered && searched)
-				{
-					builder.printList(query);
-				}
-				else
-				{
-					builder.printList(query, filters);
-				}
+				builder.printList();
 
 				window.dismiss();
 			}
@@ -167,6 +154,8 @@ public class MainActivity extends AppCompatActivity
 		TextView searchBox = findViewById(R.id.searchBox);
 		query = searchBox.getText().toString();
 
+		builder.setQuery(query);
+
 		boolean filtered = false;
 		if(filters != null)
 		{
@@ -179,14 +168,11 @@ public class MainActivity extends AppCompatActivity
 				}
 			}
 		}
-		if(!filtered)
+		if(filtered)
 		{
-			builder.printList(query);
+			builder.setFilters(filters);
 		}
-		else
-		{
-			builder.printList(query, filters);
-		}
+		builder.printList();
 	}
 
 	/**
@@ -254,14 +240,14 @@ public class MainActivity extends AppCompatActivity
 
 				filters.add(outFilter.isChecked());
 
-				if(query.equals(""))
+				builder.setFilters(filters);
+
+				if(!query.equals(""))
 				{
-					builder.printList(filters);
+					builder.setQuery(query);
 				}
-				else
-				{
-					builder.printList(query, filters);
-				}
+
+				builder.printList();
 
 				window.dismiss();
 			}

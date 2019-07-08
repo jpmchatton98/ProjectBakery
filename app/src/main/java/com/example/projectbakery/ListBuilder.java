@@ -19,7 +19,8 @@ public class ListBuilder
 
 	private StorageListAdapter adapter;
 
-
+	private String query = "";
+	private ArrayList<Boolean> filters = null;
 
 	public ListBuilder()
 	{
@@ -42,6 +43,15 @@ public class ListBuilder
 	public ArrayList getPrintingList()
 	{
 		return printingList;
+	}
+
+	public void setFilters(ArrayList<Boolean> filters)
+	{
+		this.filters = filters;
+	}
+	public void setQuery(String query)
+	{
+		this.query = query;
 	}
 
 	public void setList(ArrayList<InventoryItem> masterList)
@@ -684,7 +694,41 @@ public class ListBuilder
 	 */
 	public void printList() //Prints the printing list
 	{
-		buildList();
+		boolean filtered = false;
+		boolean searched = false;
+
+		if(filters != null)
+		{
+			for (int i = 0; i < filters.size(); i++)
+			{
+				if (filters.get(i).booleanValue())
+				{
+					filtered = true;
+					break;
+				}
+			}
+		}
+		if (query != "")
+		{
+			searched = true;
+		}
+
+		if(!filtered && !searched)
+		{
+			buildList();
+		}
+		else if(filtered && !searched)
+		{
+			buildList(filters);
+		}
+		else if(!filtered && searched)
+		{
+			buildList(query);
+		}
+		else
+		{
+			buildList(query, filters);
+		}
 
 		final ArrayList<InventoryItem> singlePrintingList = new ArrayList<>();
 
@@ -718,120 +762,6 @@ public class ListBuilder
 				}
 			}
 		}
-		);
-	}
-	public void printList(ArrayList<Boolean> filters) //Prints the printing list with filters
-	{
-		buildList(filters);
-
-		final ArrayList<InventoryItem> singlePrintingList = new ArrayList<>();
-
-		//For now, this prints to the console, however we need to modify this to print to the ListView later on
-		for (int i = 0; i < printingList.size(); i++)
-		{
-			for (int j = 0; j < printingList.get(i).size(); j++)
-			{
-				singlePrintingList.add(printingList.get(i).get(j));
-			}
-		}
-
-		final ListBuilder thisThing = this;
-
-		mainActivity.runOnUiThread(new Runnable()
-		{
-			public void run()
-			{
-			if(adapter == null)
-			{
-				adapter = new StorageListAdapter(singlePrintingList, mainActivity, thisThing);
-				listView.setAdapter(adapter);
-			}
-			else
-			{
-				adapter.setList(singlePrintingList);
-
-				adapter.notifyDataSetChanged();
-				listView.invalidateViews();
-				listView.refreshDrawableState();
-			}
-			}
-		}
-		);
-	}
-	public void printList(String query) //Prints the printing list with searching
-	{
-		buildList(query);
-
-		final ArrayList<InventoryItem> singlePrintingList = new ArrayList<>();
-
-		//For now, this prints to the console, however we need to modify this to print to the ListView later on
-		for (int i = 0; i < printingList.size(); i++)
-		{
-			for (int j = 0; j < printingList.get(i).size(); j++)
-			{
-				singlePrintingList.add(printingList.get(i).get(j));
-			}
-		}
-
-		final ListBuilder thisThing = this;
-
-		mainActivity.runOnUiThread(new Runnable()
-			{
-				public void run()
-				{
-				if(adapter == null)
-				{
-					adapter = new StorageListAdapter(singlePrintingList, mainActivity, thisThing);
-					listView.setAdapter(adapter);
-				}
-				else
-				{
-					adapter.setList(singlePrintingList);
-
-					adapter.notifyDataSetChanged();
-					listView.invalidateViews();
-					listView.refreshDrawableState();
-				}
-				}
-			}
-		);
-	}
-	public void printList(String query, ArrayList<Boolean> filters) //Prints the printing list with searching and filters
-	{
-		buildList(query, filters);
-
-		final ArrayList<InventoryItem> singlePrintingList = new ArrayList<>();
-
-		//For now, this prints to the console, however we need to modify this to print to the ListView later on
-		for (int i = 0; i < printingList.size(); i++)
-		{
-			for (int j = 0; j < printingList.get(i).size(); j++)
-			{
-				singlePrintingList.add(printingList.get(i).get(j));
-			}
-		}
-
-		final ListBuilder thisThing = this;
-
-		mainActivity.runOnUiThread(new Runnable()
-											{
-												public void run()
-												{
-				if(adapter == null)
-				{
-					adapter = new StorageListAdapter(singlePrintingList, mainActivity, thisThing);
-					listView.setAdapter(adapter);
-				}
-				else
-				{
-					adapter.setList(singlePrintingList);
-
-					adapter.notifyDataSetChanged();
-					listView.invalidateViews();
-					listView.refreshDrawableState();
-				}
-												}
-											}
 		);
 	}
 }
