@@ -133,12 +133,15 @@ public class MainActivity extends AppCompatActivity
 		query = searchBox.getText().toString();
 
 		boolean filtered = false;
-		for(int i = 0; i < filters.size(); i++)
+		if(filters != null)
 		{
-			if(filters.get(i).booleanValue())
+			for (int i = 0; i < filters.size(); i++)
 			{
-				filtered = true;
-				break;
+				if (filters.get(i).booleanValue())
+				{
+					filtered = true;
+					break;
+				}
 			}
 		}
 		if(!filtered)
