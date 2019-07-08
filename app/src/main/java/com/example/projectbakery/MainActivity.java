@@ -18,6 +18,20 @@ public class MainActivity extends AppCompatActivity
 	ListBuilder builder = null;
 	SaveAndLoad saveAndLoad = null;
 
+	/**
+	 * filters contains several booleans to control the various filters possible in the app
+	 * 0 - Doughs
+	 * 1 - Liquids
+	 * 2 - Breads
+	 * 3 - Muffins
+	 * 4 - Desserts
+	 * 5 - Ingredients
+	 * 6 - Miscellaneous
+	 * 7 - Out (Zero Quantity)
+	 */
+	ArrayList<Boolean> filters = null;
+	String query = "";
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -116,9 +130,25 @@ public class MainActivity extends AppCompatActivity
 	public void searchItems(View view)
 	{
 		TextView searchBox = findViewById(R.id.searchBox);
-		String query = searchBox.getText().toString();
+		query = searchBox.getText().toString();
 
-		builder.printList(query);
+		boolean filtered = false;
+		for(int i = 0; i < filters.size(); i++)
+		{
+			if(filters.get(i).booleanValue())
+			{
+				filtered = true;
+				break;
+			}
+		}
+		if(!filtered)
+		{
+			builder.printList(query);
+		}
+		else
+		{
+			builder.printList(query, filters);
+		}
 	}
 
 	/**
@@ -128,9 +158,6 @@ public class MainActivity extends AppCompatActivity
 	 */
 	public void filterItems(View view)
 	{
-		final ArrayList<Boolean> filters = new ArrayList<>();
-		//TODO Create dropdown window with radio buttons for filters and assign the filters to the list
-
 		LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View popupView = inflater.inflate(R.layout.filter_window, null);
 
@@ -154,6 +181,22 @@ public class MainActivity extends AppCompatActivity
 
 		final Button confirmButton = popUpView.findViewById(R.id.filterConfirmButton);
 
+		if(filters != null)
+		{
+			doughsFilter.setChecked(filters.get(0));
+			liquidsFilter.setChecked(filters.get(1));
+			breadsFilter.setChecked(filters.get(2));
+			muffinsFilter.setChecked(filters.get(3));
+			dessertsFilter.setChecked(filters.get(4));
+			ingredientsFilter.setChecked(filters.get(5));
+			miscellaneousFilter.setChecked(filters.get(6));
+			outFilter.setChecked(filters.get(7));
+		}
+		else
+		{
+			filters = new ArrayList<>();
+		}
+
 		confirmButton.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View v)
@@ -168,7 +211,14 @@ public class MainActivity extends AppCompatActivity
 
 				filters.add(outFilter.isChecked());
 
-				builder.printList(filters);
+				if(query.equals(""))
+				{
+					builder.printList(filters);
+				}
+				else
+				{
+					builder.printList(query, filters);
+				}
 
 				window.dismiss();
 			}

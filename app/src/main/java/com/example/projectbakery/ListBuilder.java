@@ -490,7 +490,17 @@ public class ListBuilder
 				{
 					if(current.getName().contains(query))
 					{
-						doughs.add(current);
+						if(filters.get(7).booleanValue())
+						{
+							if(current.getAmount() <= 0)
+							{
+								doughs.add(current);
+							}
+						}
+						else
+						{
+							doughs.add(current);
+						}
 					}
 					break;
 				}
@@ -498,7 +508,17 @@ public class ListBuilder
 				{
 					if(current.getName().contains(query))
 					{
-						liquids.add(current);
+						if(filters.get(7).booleanValue())
+						{
+							if(current.getAmount() <= 0)
+							{
+								liquids.add(current);
+							}
+						}
+						else
+						{
+							liquids.add(current);
+						}
 					}
 					break;
 				}
@@ -506,7 +526,17 @@ public class ListBuilder
 				{
 					if(current.getName().contains(query))
 					{
-						breads.add(current);
+						if(filters.get(7).booleanValue())
+						{
+							if(current.getAmount() <= 0)
+							{
+								breads.add(current);
+							}
+						}
+						else
+						{
+							breads.add(current);
+						}
 					}
 					break;
 				}
@@ -514,7 +544,17 @@ public class ListBuilder
 				{
 					if(current.getName().contains(query))
 					{
-						muffins.add(current);
+						if(filters.get(7).booleanValue())
+						{
+							if(current.getAmount() <= 0)
+							{
+								muffins.add(current);
+							}
+						}
+						else
+						{
+							muffins.add(current);
+						}
 					}
 					break;
 				}
@@ -522,7 +562,17 @@ public class ListBuilder
 				{
 					if(current.getName().contains(query))
 					{
-						desserts.add(current);
+						if(filters.get(7).booleanValue())
+						{
+							if(current.getAmount() <= 0)
+							{
+								desserts.add(current);
+							}
+						}
+						else
+						{
+							desserts.add(current);
+						}
 					}
 					break;
 				}
@@ -530,7 +580,17 @@ public class ListBuilder
 				{
 					if(current.getName().contains(query))
 					{
-						ingredients.add(current);
+						if(filters.get(7).booleanValue())
+						{
+							if(current.getAmount() <= 0)
+							{
+								ingredients.add(current);
+							}
+						}
+						else
+						{
+							ingredients.add(current);
+						}
 					}
 					break;
 				}
@@ -538,7 +598,17 @@ public class ListBuilder
 				{
 					if(current.getName().contains(query))
 					{
-						miscellaneous.add(current);
+						if(filters.get(7).booleanValue())
+						{
+							if(current.getAmount() <= 0)
+							{
+								miscellaneous.add(current);
+							}
+						}
+						else
+						{
+							miscellaneous.add(current);
+						}
 					}
 					break;
 				}
@@ -560,13 +630,49 @@ public class ListBuilder
 		Collections.sort(miscellaneous, new InventoryItem());
 
 		//Add the smaller lists to the printing list
-		printingList.add(doughs);
-		printingList.add(liquids);
-		printingList.add(breads);
-		printingList.add(muffins);
-		printingList.add(desserts);
-		printingList.add(ingredients);
-		printingList.add(miscellaneous);
+		if(!filters.get(0).booleanValue() && !filters.get(1).booleanValue() && !filters.get(2).booleanValue()
+				  && ! filters.get(3).booleanValue() && !filters.get(4).booleanValue() && !filters.get(5).booleanValue()
+				  && !filters.get(6).booleanValue())
+		{
+			printingList.add(doughs);
+			printingList.add(liquids);
+			printingList.add(breads);
+			printingList.add(muffins);
+			printingList.add(desserts);
+			printingList.add(ingredients);
+			printingList.add(miscellaneous);
+		}
+		else
+		{
+			if (filters.get(0).booleanValue())
+			{
+				printingList.add(doughs);
+			}
+			if(filters.get(1).booleanValue())
+			{
+				printingList.add(liquids);
+			}
+			if(filters.get(2).booleanValue())
+			{
+				printingList.add(breads);
+			}
+			if(filters.get(3).booleanValue())
+			{
+				printingList.add(muffins);
+			}
+			if(filters.get(4).booleanValue())
+			{
+				printingList.add(desserts);
+			}
+			if(filters.get(5).booleanValue())
+			{
+				printingList.add(ingredients);
+			}
+			if(filters.get(6).booleanValue())
+			{
+				printingList.add(miscellaneous);
+			}
+		}
 	}
 
 	/**
@@ -648,7 +754,7 @@ public class ListBuilder
 		}
 		);
 	}
-	public void printList(String query) //Prints the printing list
+	public void printList(String query) //Prints the printing list with searching
 	{
 		buildList(query);
 
@@ -684,6 +790,44 @@ public class ListBuilder
 				}
 				}
 			}
+		);
+	}
+	public void printList(String query, ArrayList<Boolean> filters) //Prints the printing list with searching and filters
+	{
+		buildList(query, filters);
+
+		final ArrayList<InventoryItem> singlePrintingList = new ArrayList<>();
+
+		//For now, this prints to the console, however we need to modify this to print to the ListView later on
+		for (int i = 0; i < printingList.size(); i++)
+		{
+			for (int j = 0; j < printingList.get(i).size(); j++)
+			{
+				singlePrintingList.add(printingList.get(i).get(j));
+			}
+		}
+
+		final ListBuilder thisThing = this;
+
+		mainActivity.runOnUiThread(new Runnable()
+											{
+												public void run()
+												{
+				if(adapter == null)
+				{
+					adapter = new StorageListAdapter(singlePrintingList, mainActivity, thisThing);
+					listView.setAdapter(adapter);
+				}
+				else
+				{
+					adapter.setList(singlePrintingList);
+
+					adapter.notifyDataSetChanged();
+					listView.invalidateViews();
+					listView.refreshDrawableState();
+				}
+												}
+											}
 		);
 	}
 }
