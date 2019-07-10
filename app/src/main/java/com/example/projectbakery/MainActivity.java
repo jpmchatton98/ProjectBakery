@@ -208,7 +208,7 @@ public class MainActivity extends AppCompatActivity
 		int width = LinearLayout.LayoutParams.WRAP_CONTENT;
 		int height = LinearLayout.LayoutParams.WRAP_CONTENT;
 
-		boolean focusable = true;
+		boolean focusable = false;
 		final PopupWindow window = new PopupWindow(popupView, width, height, focusable);
 
 		window.showAtLocation(view, Gravity.CENTER, 0, 0);
