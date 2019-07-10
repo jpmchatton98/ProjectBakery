@@ -67,6 +67,16 @@ public class MainActivity extends AppCompatActivity
 		builder.addItem(new InventoryItem("Non-Empty Liquid", "liquid", 54));
 		builder.addItem(new InventoryItem("Empty Item", "muffin", 0));
 
+		boolean tonsOfItems = true;
+
+		if(tonsOfItems)
+		{
+			for (int i = 0; i < 300; i++)
+			{
+				builder.addItem(new InventoryItem("Item #" + i, "ingredient", 5));
+			}
+		}
+
 		builder.printList();
 
 		saveAndLoad = new SaveAndLoad();
