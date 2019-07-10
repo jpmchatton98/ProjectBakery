@@ -39,7 +39,10 @@ public class MainActivity extends AppCompatActivity
 	{
 		getSupportActionBar().hide();
 
-		TextView searchBox = this.findViewById(R.id.searchBox);
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+
+		TextView searchBox = findViewById(R.id.searchBox);
 		searchBox.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count, int after)
@@ -57,9 +60,6 @@ public class MainActivity extends AppCompatActivity
 				//Do Nothing
 			}
 		});
-
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
 
 		builder = new ListBuilder((ListView) findViewById(R.id.itemList), this);
 		builder.addItem(new InventoryItem("Non-Empty Dough", "dough", 60));
