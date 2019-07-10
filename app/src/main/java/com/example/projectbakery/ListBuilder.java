@@ -90,7 +90,7 @@ public class ListBuilder
 				@Override
 				public void run()
 				{
-					Toast.makeText(mainActivity, toastString, Toast.LENGTH_LONG);
+					Toast.makeText(mainActivity, toastString, Toast.LENGTH_LONG).show();
 				}
 			});
 		}
