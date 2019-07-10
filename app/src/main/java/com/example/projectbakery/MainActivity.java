@@ -34,13 +34,12 @@ public class MainActivity extends AppCompatActivity
 	ArrayList<Boolean> filters = null;
 	String query = "";
 
-	TextView searchBox = findViewById(R.id.searchBox);
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		getSupportActionBar().hide();
 
+		TextView searchBox = findViewById(R.id.searchBox);
 		searchBox.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count, int after)
@@ -172,6 +171,7 @@ public class MainActivity extends AppCompatActivity
 	 */
 	public void searchItems()
 	{
+		TextView searchBox = findViewById(R.id.searchBox);
 		query = searchBox.getText().toString();
 
 		builder.setQuery(query);
