@@ -61,19 +61,22 @@ public class MainActivity extends AppCompatActivity
 			}
 		});
 
-		builder = new ListBuilder((ListView) findViewById(R.id.itemList), this);
-		builder.addItem(new InventoryItem("Non-Empty Dough", "dough", 60));
-		builder.addItem(new InventoryItem("Empty Dough", "dough", 0));
-		builder.addItem(new InventoryItem("Non-Empty Liquid", "liquid", 54));
-		builder.addItem(new InventoryItem("Empty Item", "muffin", 0));
-
-		boolean tonsOfItems = true;
-
-		if(tonsOfItems)
+		boolean testing = true;
+		if(testing)
 		{
-			for (int i = 0; i < 300; i++)
+			builder = new ListBuilder((ListView) findViewById(R.id.itemList), this);
+			builder.addItem(new InventoryItem("Non-Empty Dough", "dough", 60));
+			builder.addItem(new InventoryItem("Empty Dough", "dough", 0));
+			builder.addItem(new InventoryItem("Non-Empty Liquid", "liquid", 54));
+			builder.addItem(new InventoryItem("Empty Item", "muffin", 0));
+
+			boolean tonsOfItems = false;
+			if(tonsOfItems)
 			{
-				builder.addItem(new InventoryItem("Item #" + i, "ingredient", 5));
+				for (int i = 0; i < 300; i++)
+				{
+					builder.addItem(new InventoryItem("Item #" + i, "ingredient", 5));
+				}
 			}
 		}
 
