@@ -2,6 +2,7 @@ package com.example.projectbakery;
 
 import android.app.Activity;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -82,6 +83,16 @@ public class ListBuilder
 			InventoryItem modify = masterList.get(i);
 			modify.setAmount(modify.getAmount() + item.getAmount());
 			masterList.set(i, modify);
+
+			final String toastString = modify.getName() + " already exists, " + item.getAmount() + " added to item.";
+
+			mainActivity.runOnUiThread(new Runnable(){
+				@Override
+				public void run()
+				{
+					Toast.makeText(mainActivity, toastString, Toast.LENGTH_LONG);
+				}
+			});
 		}
 		else
 		{
