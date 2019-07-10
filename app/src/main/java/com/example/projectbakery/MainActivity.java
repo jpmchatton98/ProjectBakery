@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity
 	{
 		getSupportActionBar().hide();
 
-		TextView searchBox = findViewById(R.id.searchBox);
+		TextView searchBox = this.findViewById(R.id.searchBox);
 		searchBox.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count, int after)
