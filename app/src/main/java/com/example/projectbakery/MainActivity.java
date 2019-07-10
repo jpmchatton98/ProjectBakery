@@ -3,6 +3,8 @@ package com.example.projectbakery;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.*;
 import android.widget.*;
 
@@ -32,10 +34,30 @@ public class MainActivity extends AppCompatActivity
 	ArrayList<Boolean> filters = null;
 	String query = "";
 
+	EditText searchBox = findViewById(R.id.searchBox);
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		getSupportActionBar().hide();
+
+		searchBox.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count, int after)
+			{
+				//Do Nothing
+			}
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count)
+			{
+				searchItems();
+			}
+			@Override
+			public void afterTextChanged(Editable s)
+			{
+				//Do Nothing
+			}
+		});
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
@@ -149,9 +171,8 @@ public class MainActivity extends AppCompatActivity
 	 * Takes in a query string from the search box and filters the listView appropriately
 	 * @param view
 	 */
-	public void searchItems(View view)
+	public void searchItems()
 	{
-		TextView searchBox = findViewById(R.id.searchBox);
 		query = searchBox.getText().toString();
 
 		builder.setQuery(query);
