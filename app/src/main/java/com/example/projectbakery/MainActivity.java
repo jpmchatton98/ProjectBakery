@@ -169,7 +169,6 @@ public class MainActivity extends AppCompatActivity
 
 	/**
 	 * Takes in a query string from the search box and filters the listView appropriately
-	 * @param view
 	 */
 	public void searchItems()
 	{
