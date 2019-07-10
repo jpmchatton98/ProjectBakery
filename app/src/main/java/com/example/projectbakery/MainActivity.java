@@ -61,10 +61,11 @@ public class MainActivity extends AppCompatActivity
 			}
 		});
 
+		builder = new ListBuilder((ListView) findViewById(R.id.itemList), this);
+
 		boolean testing = true;
 		if(testing)
 		{
-			builder = new ListBuilder((ListView) findViewById(R.id.itemList), this);
 			builder.addItem(new InventoryItem("Non-Empty Dough", "dough", 60));
 			builder.addItem(new InventoryItem("Empty Dough", "dough", 0));
 			builder.addItem(new InventoryItem("Non-Empty Liquid", "liquid", 54));
