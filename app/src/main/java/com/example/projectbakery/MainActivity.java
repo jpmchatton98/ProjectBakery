@@ -43,6 +43,9 @@ public class MainActivity extends AppCompatActivity
 		setContentView(R.layout.activity_main);
 
 		TextView searchBox = findViewById(R.id.searchBox);
+
+		query = searchBox.getText().toString();
+
 		searchBox.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count, int after)
@@ -87,28 +90,6 @@ public class MainActivity extends AppCompatActivity
 	}
 
 	/**
-	 * Creates a JSONArray and saves it to the Firebase database
-	 */
-	public void saveStorage()
-	{
-		JSONArray save = saveAndLoad.createJSON(builder.getList());
-		//TODO create code to put save in the Firebase database
-	}
-
-	/**
-	 * Grabs the text from the Firebase database and parses it into a JSONArray which is then parsed
-	 * into the master storage list
-	 */
-	public void loadStorage()
-	{
-		String load = "";
-		//TODO create code to get load from the Firebase database
-
-		builder.setList(saveAndLoad.readJSON(load));
-		builder.printList();
-	}
-
-	/**
 	 * Creates the pop-up window for adding items to the master storage list and handles the actual
 	 * adding of the items
 	 * @param view
@@ -121,8 +102,7 @@ public class MainActivity extends AppCompatActivity
 	 	int width = LinearLayout.LayoutParams.WRAP_CONTENT;
 	 	int height = LinearLayout.LayoutParams.WRAP_CONTENT;
 
-	 	boolean focusable = true;
-	 	final PopupWindow window = new PopupWindow(popupView, width, height, focusable);
+	 	final PopupWindow window = new PopupWindow(popupView, width, height, true);
 
 	 	window.showAtLocation(view, Gravity.CENTER, 0, 0);
 
@@ -185,9 +165,6 @@ public class MainActivity extends AppCompatActivity
 	 */
 	public void searchItems()
 	{
-		TextView searchBox = findViewById(R.id.searchBox);
-		query = searchBox.getText().toString();
-
 		builder.setQuery(query);
 
 		boolean filtered = false;
@@ -222,8 +199,7 @@ public class MainActivity extends AppCompatActivity
 		int width = LinearLayout.LayoutParams.WRAP_CONTENT;
 		int height = LinearLayout.LayoutParams.WRAP_CONTENT;
 
-		boolean focusable = false;
-		final PopupWindow window = new PopupWindow(popupView, width, height, focusable);
+		final PopupWindow window = new PopupWindow(popupView, width, height, false);
 
 		window.showAtLocation(view, Gravity.CENTER, 0, 0);
 
