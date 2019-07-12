@@ -42,9 +42,7 @@ public class MainActivity extends AppCompatActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		TextView searchBox = findViewById(R.id.searchBox);
-
-		query = searchBox.getText().toString();
+		final TextView searchBox = findViewById(R.id.searchBox);
 
 		searchBox.addTextChangedListener(new TextWatcher() {
 			@Override
@@ -55,6 +53,7 @@ public class MainActivity extends AppCompatActivity
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count)
 			{
+				query = searchBox.getText().toString();
 				searchItems();
 			}
 			@Override
