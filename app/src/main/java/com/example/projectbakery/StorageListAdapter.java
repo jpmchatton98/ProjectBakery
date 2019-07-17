@@ -136,6 +136,8 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 				{
 					holder.alert.setVisibility(View.INVISIBLE);
 				}
+
+				builder.saveItems();
 			}
 		});
 		holder.minusButton.setOnClickListener(new View.OnClickListener(){
@@ -168,6 +170,8 @@ public class StorageListAdapter extends ArrayAdapter<InventoryItem> implements L
 					{
 						holder.alert.setVisibility(View.VISIBLE);
 					}
+
+					builder.saveItems();
 				}
 			}
 		});

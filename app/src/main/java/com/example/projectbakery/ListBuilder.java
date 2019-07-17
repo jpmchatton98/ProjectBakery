@@ -777,6 +777,11 @@ public class ListBuilder
 		}
 		);
 
+		saveItems();
+	}
+
+	public void saveItems()
+	{
 		SharedPreferences preferences;
 		SharedPreferences.Editor editor;
 
