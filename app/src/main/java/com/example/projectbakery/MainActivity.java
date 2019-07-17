@@ -91,11 +91,10 @@ public class MainActivity extends AppCompatActivity
 		preferences = getPreferences(Context.MODE_PRIVATE);
 		editor = preferences.edit();
 
-		builder.printList();
-
 		JSONArray defaultArray = new JSONArray();
 
 		builder.setList(saveAndLoad.readJSON(preferences.getString("masterStorage", defaultArray.toString())));
+		builder.printList();
 	}
 
 	/**
