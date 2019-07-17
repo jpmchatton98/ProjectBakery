@@ -1,6 +1,7 @@
 package com.example.projectbakery;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -34,6 +35,9 @@ public class MainActivity extends AppCompatActivity
 	ArrayList<Boolean> filters = null;
 	String query = "";
 
+	SharedPreferences preferences;
+	SharedPreferences.Editor editor;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -65,7 +69,7 @@ public class MainActivity extends AppCompatActivity
 
 		builder = new ListBuilder((ListView) findViewById(R.id.itemList), this);
 
-		boolean testing = true;
+		boolean testing = false;
 		if(testing)
 		{
 			builder.addItem(new InventoryItem("Non-Empty Dough", "dough", 60));
@@ -83,9 +87,15 @@ public class MainActivity extends AppCompatActivity
 			}
 		}
 
+		saveAndLoad = new SaveAndLoad();
+		preferences = getPreferences(Context.MODE_PRIVATE);
+		editor = preferences.edit();
+
 		builder.printList();
 
-		saveAndLoad = new SaveAndLoad();
+		JSONArray defaultArray = new JSONArray();
+
+		builder.setList(saveAndLoad.readJSON(preferences.getString("masterStorage", defaultArray.toString())));
 	}
 
 	/**
@@ -155,17 +165,20 @@ public class MainActivity extends AppCompatActivity
 				builder.printList();
 
 				window.dismiss();
+
+				editor.putString("masterStorage", saveAndLoad.createJSON(builder.getList()));
+				editor.commit();
 			}
 		});
 	}
 
-	/**
-	 * Takes in a query string from the search box and filters the listView appropriately
-	 */
-	public void searchItems()
-	{
-		builder.setQuery(query);
 
+		/**
+		 * Takes in a query string from the search box and filters the listView appropriately
+		 */
+		public void searchItems()
+		{
+			builder.setQuery(query);
 		boolean filtered = false;
 		if(filters != null)
 		{

@@ -16,7 +16,7 @@ public class SaveAndLoad
 	 * @param masterList
 	 * @return
 	 */
-	public JSONArray createJSON(ArrayList<InventoryItem> masterList) //Creates the JSON from a list
+	public String createJSON(ArrayList<InventoryItem> masterList) //Creates the JSON from a list
 	{
 		JSONArray jsonItems = new JSONArray();
 		JSONObject[] jsonObjects = new JSONObject[masterList.size()];
@@ -30,7 +30,7 @@ public class SaveAndLoad
 			jsonItems.put(jsonObjects[i]);
 		}
 
-		return jsonItems;
+		return jsonItems.toString();
 	}
 
 	/**
