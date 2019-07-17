@@ -783,6 +783,6 @@ public class ListBuilder
 		preferences = mainActivity.getPreferences(Context.MODE_PRIVATE);
 		editor = preferences.edit();
 
-		editor.putString("mainStorage", new SaveAndLoad().createJSON(masterList));
+		editor.putString("masterStorage", new SaveAndLoad().createJSON(masterList));
 	}
 }
