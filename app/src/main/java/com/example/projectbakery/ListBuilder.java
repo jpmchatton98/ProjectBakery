@@ -39,10 +39,6 @@ public class ListBuilder
 		this.mainActivity = mainActivity;
 	}
 
-	public ArrayList getList()
-	{
-		return masterList;
-	}
 	public ArrayList getPrintingList()
 	{
 		return printingList;
