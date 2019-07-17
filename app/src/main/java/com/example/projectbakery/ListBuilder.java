@@ -784,5 +784,6 @@ public class ListBuilder
 		editor = preferences.edit();
 
 		editor.putString("masterStorage", new SaveAndLoad().createJSON(masterList));
+		editor.commit();
 	}
 }
