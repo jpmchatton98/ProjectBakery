@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity
 	String query = "";
 
 	SharedPreferences preferences;
-	SharedPreferences.Editor editor;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -89,7 +88,6 @@ public class MainActivity extends AppCompatActivity
 
 		saveAndLoad = new SaveAndLoad();
 		preferences = getPreferences(Context.MODE_PRIVATE);
-		editor = preferences.edit();
 
 		JSONArray defaultArray = new JSONArray();
 
@@ -164,9 +162,6 @@ public class MainActivity extends AppCompatActivity
 				builder.printList();
 
 				window.dismiss();
-
-				editor.putString("masterStorage", saveAndLoad.createJSON(builder.getList()));
-				editor.commit();
 			}
 		});
 	}

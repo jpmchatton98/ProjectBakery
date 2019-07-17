@@ -1,6 +1,8 @@
 package com.example.projectbakery;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -774,5 +776,13 @@ public class ListBuilder
 			}
 		}
 		);
+
+		SharedPreferences preferences;
+		SharedPreferences.Editor editor;
+
+		preferences = mainActivity.getPreferences(Context.MODE_PRIVATE);
+		editor = preferences.edit();
+
+		editor.putString("mainStorage", new SaveAndLoad().createJSON(masterList));
 	}
 }
