@@ -100,6 +100,8 @@ public class ListBuilder
 		{
 			masterList.add(item);
 		}
+
+		saveItems();
 	}
 
 	/**
@@ -113,6 +115,7 @@ public class ListBuilder
 			if(masterList.get(i).getName().equals(name))
 			{
 				masterList.remove(i);
+				saveItems();
 				break;
 			}
 		}
@@ -776,8 +779,6 @@ public class ListBuilder
 			}
 		}
 		);
-
-		saveItems();
 	}
 
 	public void saveItems()
