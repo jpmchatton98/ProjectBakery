@@ -65,8 +65,9 @@ public class ListBuilder
 	 */
 	public void addItem(InventoryItem item)
 	{
-		boolean contains = false;
-		int i;
+		boolean contains = false; //If the list already contains the item
+		int i; //External variable so we can use it later
+		//Check to see if the list contains the item
 		for(i = 0; i < masterList.size(); i++)
 		{
 			if(masterList.get(i).getName().equals(item.getName()))
@@ -76,12 +77,14 @@ public class ListBuilder
 			}
 		}
 
-		if(contains)
+		if(contains) //If the list contains the item
 		{
+			//Get the item and increase the quantity
 			InventoryItem modify = masterList.get(i);
 			modify.setAmount(modify.getAmount() + item.getAmount());
 			masterList.set(i, modify);
 
+			//Print a toast to notify the user
 			final String toastString = modify.getName() + " already exists, " + item.getAmount() + " added to item.";
 
 			mainActivity.runOnUiThread(new Runnable(){
@@ -94,10 +97,9 @@ public class ListBuilder
 		}
 		else
 		{
-			masterList.add(item);
+			masterList.add(item); //Just add the item
 		}
-
-		saveItems();
+		saveItems(); //Save the list
 	}
 
 	/**
@@ -118,13 +120,13 @@ public class ListBuilder
 	}
 
 	/**
-	 * Builds the list with all requested filters and searches.  Works by creating several small
+	 * Builds the list without any filters or searches.  Works by creating several small
 	 * lists for all different categories and then assigning the necessary lists to the larger
 	 * printing list that acts as a sorted and split master storage list.
 	 */
-	public void buildList() //Builds the printing list from a number of smaller lists
+	public void buildList()
 	{
-		printingList.clear();
+		printingList.clear(); //Clears the current printingList
 
 		//Smaller lists by category
 		ArrayList<InventoryItem> doughs = new ArrayList<>();
@@ -202,9 +204,15 @@ public class ListBuilder
 		printingList.add(ingredients);
 		printingList.add(miscellaneous);
 	}
-	public void buildList(ArrayList<Boolean> filters) //Builds the printing list from a number of smaller lists with filters
+
+	/**
+	 * Modified version of the buildList() function that builds the list while taking into
+	 * account all user-requested filters
+	 * @param filters
+	 */
+	public void buildList(ArrayList<Boolean> filters)
 	{
-		printingList.clear();
+		printingList.clear(); //Clears the current printingList
 
 		//Smaller lists by category
 		ArrayList<InventoryItem> doughs = new ArrayList<>();
@@ -223,7 +231,7 @@ public class ListBuilder
 			{
 				case "dough":
 				{
-					if(filters.get(7).booleanValue())
+					if(filters.get(7).booleanValue()) //If the out filter is active
 					{
 						if(current.getAmount() <= 0)
 						{
@@ -238,7 +246,7 @@ public class ListBuilder
 				}
 				case "liquid":
 				{
-					if(filters.get(7).booleanValue())
+					if(filters.get(7).booleanValue()) //If the out filter is active
 					{
 						if(current.getAmount() <= 0)
 						{
@@ -253,7 +261,7 @@ public class ListBuilder
 				}
 				case "bread":
 				{
-					if(filters.get(7).booleanValue())
+					if(filters.get(7).booleanValue()) //If the out filter is active
 					{
 						if(current.getAmount() <= 0)
 						{
@@ -268,7 +276,7 @@ public class ListBuilder
 				}
 				case "muffin":
 				{
-					if(filters.get(7).booleanValue())
+					if(filters.get(7).booleanValue()) //If the out filter is active
 					{
 						if(current.getAmount() <= 0)
 						{
@@ -283,7 +291,7 @@ public class ListBuilder
 				}
 				case "dessert":
 				{
-					if(filters.get(7).booleanValue())
+					if(filters.get(7).booleanValue()) //If the out filter is active
 					{
 						if(current.getAmount() <= 0)
 						{
@@ -298,7 +306,7 @@ public class ListBuilder
 				}
 				case "ingredient":
 				{
-					if(filters.get(7).booleanValue())
+					if(filters.get(7).booleanValue()) //If the out filter is active
 					{
 						if(current.getAmount() <= 0)
 						{
@@ -313,7 +321,7 @@ public class ListBuilder
 				}
 				case "miscellaneous":
 				{
-					if(filters.get(7).booleanValue())
+					if(filters.get(7).booleanValue()) //If the out filter is active
 					{
 						if(current.getAmount() <= 0)
 						{
@@ -346,7 +354,7 @@ public class ListBuilder
 		//Add the smaller lists to the printing list
 		if(!filters.get(0).booleanValue() && !filters.get(1).booleanValue() && !filters.get(2).booleanValue()
 				  && ! filters.get(3).booleanValue() && !filters.get(4).booleanValue() && !filters.get(5).booleanValue()
-				  && !filters.get(6).booleanValue())
+				  && !filters.get(6).booleanValue()) //If no filters are active, treat as if all are active
 		{
 			printingList.add(doughs);
 			printingList.add(liquids);
@@ -358,6 +366,7 @@ public class ListBuilder
 		}
 		else
 		{
+			//Only adds the filtered lists
 			if (filters.get(0).booleanValue())
 			{
 				printingList.add(doughs);
@@ -388,9 +397,15 @@ public class ListBuilder
 			}
 		}
 	}
-	public void buildList(String query) //Builds the printing list from a number of smaller lists with searching
+
+	/**
+	 * Modified version of the buildList() function that builds the list while
+	 * taking into account a user-requested search query
+	 * @param query
+	 */
+	public void buildList(String query)
 	{
-		printingList.clear();
+		printingList.clear(); //Clears the current printingList
 
 		//Smaller lists by category
 		ArrayList<InventoryItem> doughs = new ArrayList<>();
@@ -401,7 +416,7 @@ public class ListBuilder
 		ArrayList<InventoryItem> ingredients = new ArrayList<>();
 		ArrayList<InventoryItem> miscellaneous = new ArrayList<>();
 
-		query = query.toUpperCase();
+		query = query.toUpperCase(); //Makes sure case doesn't matter for the query
 
 		for (int i = 0; i < masterList.size(); i++) //Fill the smaller lists
 		{
@@ -411,7 +426,7 @@ public class ListBuilder
 			{
 				case "dough":
 				{
-					if((current.getName().toUpperCase()).contains(query))
+					if((current.getName().toUpperCase()).contains(query)) //If the item name contains the query
 					{
 						doughs.add(current);
 					}
@@ -419,7 +434,7 @@ public class ListBuilder
 				}
 				case "liquid":
 				{
-					if((current.getName().toUpperCase()).contains(query))
+					if((current.getName().toUpperCase()).contains(query)) //If the item name contains the query
 					{
 						liquids.add(current);
 					}
@@ -427,7 +442,7 @@ public class ListBuilder
 				}
 				case "bread":
 				{
-					if((current.getName().toUpperCase()).contains(query))
+					if((current.getName().toUpperCase()).contains(query)) //If the item name contains the query
 					{
 						breads.add(current);
 					}
@@ -435,7 +450,7 @@ public class ListBuilder
 				}
 				case "muffin":
 				{
-					if((current.getName().toUpperCase()).contains(query))
+					if((current.getName().toUpperCase()).contains(query)) //If the item name contains the query
 					{
 						muffins.add(current);
 					}
@@ -443,7 +458,7 @@ public class ListBuilder
 				}
 				case "dessert":
 				{
-					if((current.getName().toUpperCase()).contains(query))
+					if((current.getName().toUpperCase()).contains(query)) //If the item name contains the query
 					{
 						desserts.add(current);
 					}
@@ -451,7 +466,7 @@ public class ListBuilder
 				}
 				case "ingredient":
 				{
-					if((current.getName().toUpperCase()).contains(query))
+					if((current.getName().toUpperCase()).contains(query)) //If the item name contains the query
 					{
 						ingredients.add(current);
 					}
@@ -459,7 +474,7 @@ public class ListBuilder
 				}
 				case "miscellaneous":
 				{
-					if((current.getName().toUpperCase()).contains(query))
+					if((current.getName().toUpperCase()).contains(query)) //If the item name contains the query
 					{
 						miscellaneous.add(current);
 					}
@@ -491,9 +506,16 @@ public class ListBuilder
 		printingList.add(ingredients);
 		printingList.add(miscellaneous);
 	}
-	public void buildList(String query, ArrayList<Boolean> filters) //Builds the printing list from a number of smaller lists with searching and filters
+
+	/**
+	 * Modified version of the buildList() function that builds the list while taking into
+	 * account all user-requested filters and a user-requested search query
+	 * @param query
+	 * @param filters
+	 */
+	public void buildList(String query, ArrayList<Boolean> filters)
 	{
-		printingList.clear();
+		printingList.clear(); //Clears the current printingList
 
 		//Smaller lists by category
 		ArrayList<InventoryItem> doughs = new ArrayList<>();
@@ -504,7 +526,7 @@ public class ListBuilder
 		ArrayList<InventoryItem> ingredients = new ArrayList<>();
 		ArrayList<InventoryItem> miscellaneous = new ArrayList<>();
 
-		query = query.toUpperCase();
+		query = query.toUpperCase(); //Makes sure that case doesn't matter on the query
 
 		for (int i = 0; i < masterList.size(); i++) //Fill the smaller lists
 		{
@@ -514,9 +536,9 @@ public class ListBuilder
 			{
 				case "dough":
 				{
-					if((current.getName().toUpperCase()).contains(query))
+					if((current.getName().toUpperCase()).contains(query)) //If the item name contains the query
 					{
-						if(filters.get(7).booleanValue())
+						if(filters.get(7).booleanValue()) //If the out filter is active
 						{
 							if(current.getAmount() <= 0)
 							{
@@ -532,9 +554,9 @@ public class ListBuilder
 				}
 				case "liquid":
 				{
-					if((current.getName().toUpperCase()).contains(query))
+					if((current.getName().toUpperCase()).contains(query)) //If the item name contains the query
 					{
-						if(filters.get(7).booleanValue())
+						if(filters.get(7).booleanValue()) //If the out filter is active
 						{
 							if(current.getAmount() <= 0)
 							{
@@ -550,9 +572,9 @@ public class ListBuilder
 				}
 				case "bread":
 				{
-					if((current.getName().toUpperCase()).contains(query))
+					if((current.getName().toUpperCase()).contains(query)) //If the item name contains the query
 					{
-						if(filters.get(7).booleanValue())
+						if(filters.get(7).booleanValue()) //If the out filter is active
 						{
 							if(current.getAmount() <= 0)
 							{
@@ -568,9 +590,9 @@ public class ListBuilder
 				}
 				case "muffin":
 				{
-					if((current.getName().toUpperCase()).contains(query))
+					if((current.getName().toUpperCase()).contains(query)) //If the item name contains the query
 					{
-						if(filters.get(7).booleanValue())
+						if(filters.get(7).booleanValue()) //If the out filter is active
 						{
 							if(current.getAmount() <= 0)
 							{
@@ -586,9 +608,9 @@ public class ListBuilder
 				}
 				case "dessert":
 				{
-					if((current.getName().toUpperCase()).contains(query))
+					if((current.getName().toUpperCase()).contains(query)) //If the item name contains the query
 					{
-						if(filters.get(7).booleanValue())
+						if(filters.get(7).booleanValue()) //If the out filter is active
 						{
 							if(current.getAmount() <= 0)
 							{
@@ -604,9 +626,9 @@ public class ListBuilder
 				}
 				case "ingredient":
 				{
-					if((current.getName().toUpperCase()).contains(query))
+					if((current.getName().toUpperCase()).contains(query)) //If the item name contains the query
 					{
-						if(filters.get(7).booleanValue())
+						if(filters.get(7).booleanValue()) //If the out filter is active
 						{
 							if(current.getAmount() <= 0)
 							{
@@ -622,9 +644,9 @@ public class ListBuilder
 				}
 				case "miscellaneous":
 				{
-					if((current.getName().toUpperCase()).contains(query))
+					if((current.getName().toUpperCase()).contains(query)) //If the item name contains the query
 					{
-						if(filters.get(7).booleanValue())
+						if(filters.get(7).booleanValue()) //If the out filter is active
 						{
 							if(current.getAmount() <= 0)
 							{
@@ -658,7 +680,7 @@ public class ListBuilder
 		//Add the smaller lists to the printing list
 		if(!filters.get(0).booleanValue() && !filters.get(1).booleanValue() && !filters.get(2).booleanValue()
 				  && ! filters.get(3).booleanValue() && !filters.get(4).booleanValue() && !filters.get(5).booleanValue()
-				  && !filters.get(6).booleanValue())
+				  && !filters.get(6).booleanValue()) //If no filters are active, treat as if all filters are active
 		{
 			printingList.add(doughs);
 			printingList.add(liquids);
@@ -670,6 +692,7 @@ public class ListBuilder
 		}
 		else
 		{
+			//Only add filtered lists
 			if (filters.get(0).booleanValue())
 			{
 				printingList.add(doughs);
@@ -709,6 +732,7 @@ public class ListBuilder
 		boolean filtered = false;
 		boolean searched = false;
 
+		//Checks if the filters are active
 		if(filters != null)
 		{
 			for (int i = 0; i < filters.size(); i++)
@@ -720,11 +744,13 @@ public class ListBuilder
 				}
 			}
 		}
+		//Checks if the search is active
 		if (query != "")
 		{
 			searched = true;
 		}
 
+		//Builds the list with the appropriate function
 		if(!filtered && !searched)
 		{
 			buildList();
@@ -742,9 +768,10 @@ public class ListBuilder
 			buildList(query, filters);
 		}
 
+		//Creates an empty ArrayList
 		final ArrayList<InventoryItem> singlePrintingList = new ArrayList<>();
 
-		//For now, this prints to the console, however we need to modify this to print to the ListView later on
+		//Compiles the printingList down to a single list
 		for (int i = 0; i < printingList.size(); i++)
 		{
 			for (int j = 0; j < printingList.get(i).size(); j++)
@@ -753,21 +780,22 @@ public class ListBuilder
 			}
 		}
 
-		final ListBuilder thisThing = this;
+		final ListBuilder thisThing = this; //Gets a final version of this
 
 		mainActivity.runOnUiThread(new Runnable()
 		{
 			public void run()
 			{
-				if(adapter == null)
+				if(adapter == null) //If the list hasn't been printed yet
 				{
-					adapter = new StorageListAdapter(singlePrintingList, mainActivity, thisThing);
+					adapter = new StorageListAdapter(singlePrintingList, mainActivity, thisThing); //Sets the adapter up
 					listView.setAdapter(adapter);
 				}
-				else
+				else //If the list has previously been printed
 				{
-					adapter.setList(singlePrintingList);
+					adapter.setList(singlePrintingList); //Modifies the adapter
 
+					//Notifies the adapter of the changes
 					adapter.notifyDataSetChanged();
 					listView.invalidateViews();
 					listView.refreshDrawableState();
@@ -777,14 +805,20 @@ public class ListBuilder
 		);
 	}
 
+	/**
+	 * Saves the master storage list to the shared preferences.  This function gets called
+	 * wherever the list changes.
+	 */
 	public void saveItems()
 	{
 		SharedPreferences preferences;
 		SharedPreferences.Editor editor;
 
+		//Gets the preferences and their editor
 		preferences = mainActivity.getPreferences(Context.MODE_PRIVATE);
 		editor = preferences.edit();
 
+		//Puts a JSON string into the shared preferences
 		editor.putString("masterStorage", new SaveAndLoad().createJSON(masterList));
 		editor.commit();
 	}

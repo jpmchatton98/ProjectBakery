@@ -18,19 +18,19 @@ public class SaveAndLoad
 	 */
 	public String createJSON(ArrayList<InventoryItem> masterList) //Creates the JSON from a list
 	{
-		JSONArray jsonItems = new JSONArray();
-		JSONObject[] jsonObjects = new JSONObject[masterList.size()];
+		JSONArray jsonItems = new JSONArray(); //Creates an empty JSONArray
+		JSONObject[] jsonObjects = new JSONObject[masterList.size()]; //Creates an empty array of JSONObjects
 
-		for(int i = 0; i < masterList.size(); i++)
+		for(int i = 0; i < masterList.size(); i++) //For every item in the master list
 		{
-			jsonObjects[i] = createJSONItem(masterList.get(i));
+			jsonObjects[i] = createJSONItem(masterList.get(i)); //Convert to a JSONObject
 		}
-		for(int i = 0; i < masterList.size(); i++)
+		for(int i = 0; i < masterList.size(); i++) //For every item in the JSONObject array
 		{
-			jsonItems.put(jsonObjects[i]);
+			jsonItems.put(jsonObjects[i]); //Put the item in the JSONArray
 		}
 
-		return jsonItems.toString();
+		return jsonItems.toString(); //Return the array as a JSON string
 	}
 
 	/**
@@ -40,19 +40,19 @@ public class SaveAndLoad
 	 */
 	public JSONObject createJSONItem(InventoryItem item)
 	{
-		JSONObject jsonItem = new JSONObject();
+		JSONObject jsonItem = new JSONObject(); //Creates an empty JSONObject
 		try
 		{
-			jsonItem.put("name", item.getName());
-			jsonItem.put("category", item.getCategory());
-			jsonItem.put("amount", item.getAmount());
+			jsonItem.put("name", item.getName()); //Puts the name in
+			jsonItem.put("category", item.getCategory()); //Puts the category in
+			jsonItem.put("amount", item.getAmount()); //Puts the amount in
 		}
 		catch(JSONException e)
 		{
 			e.printStackTrace();
 		}
 
-		return jsonItem;
+		return jsonItem; //Returns the item
 	}
 
 	/**
@@ -65,19 +65,19 @@ public class SaveAndLoad
 		JSONArray array = null;
 		try
 		{
-			array = new JSONArray(jsonString);
+			array = new JSONArray(jsonString); //Creates a JSONArray from the string
 		}
 		catch(JSONException e)
 		{
 			e.printStackTrace();
 		}
 
-		ArrayList<JSONObject> objects = new ArrayList<>();
-		for(int i = 0; i < array.length(); i++)
+		ArrayList<JSONObject> objects = new ArrayList<>(); //Creates an empty ArrayList of JSONObjects
+		for(int i = 0; i < array.length(); i++) //For the length of the JSONArray
 		{
 			try
 			{
-				objects.add((JSONObject) array.get(i));
+				objects.add((JSONObject) array.get(i)); //Add the JSONObjects to the ArrayList
 			}
 			catch(JSONException e)
 			{
@@ -85,12 +85,17 @@ public class SaveAndLoad
 			}
 		}
 
-		ArrayList<InventoryItem> readInList = new ArrayList<>();
-		for(int i = 0; i < objects.size(); i++)
+		ArrayList<InventoryItem> readInList = new ArrayList<>(); //Creates an empty ArrayList of InventoryItem objects
+		for(int i = 0; i < objects.size(); i++) //For every item in the ArrayList of JSONObjects
 		{
 			try
 			{
-				readInList.add(new InventoryItem(objects.get(i).getString("name"), objects.get(i).getString("category"), objects.get(i).getInt("amount")));
+				//Adds the item in the JSONObject to the InventoryItem list
+				readInList.add(
+						  new InventoryItem(
+						  		  objects.get(i).getString("name"),
+									 objects.get(i).getString("category"),
+									 objects.get(i).getInt("amount")));
 			}
 			catch (JSONException e)
 			{
@@ -98,6 +103,6 @@ public class SaveAndLoad
 			}
 		}
 
-		return readInList;
+		return readInList; //Returns the InventoryItem list
 	}
 }

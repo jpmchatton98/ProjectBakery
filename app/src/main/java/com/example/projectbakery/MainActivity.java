@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity
 
 		final TextView searchBox = findViewById(R.id.searchBox);
 
+		//Add a textChangedListener to the search box
 		searchBox.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count, int after)
@@ -56,8 +57,8 @@ public class MainActivity extends AppCompatActivity
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count)
 			{
-				query = searchBox.getText().toString();
-				searchItems();
+				query = searchBox.getText().toString(); //Get the query string
+				searchItems(); //Search the items
 			}
 			@Override
 			public void afterTextChanged(Editable s)
@@ -66,8 +67,10 @@ public class MainActivity extends AppCompatActivity
 			}
 		});
 
+		//Creates the builder with the ListView
 		builder = new ListBuilder((ListView) findViewById(R.id.itemList), this);
 
+		//Testing area to test functionality
 		boolean testing = false;
 		if(testing)
 		{
@@ -91,8 +94,9 @@ public class MainActivity extends AppCompatActivity
 
 		JSONArray defaultArray = new JSONArray();
 
+		//Loads the list from the shared preferences
 		builder.setList(saveAndLoad.readJSON(preferences.getString("masterStorage", defaultArray.toString())));
-		builder.printList();
+		builder.printList(); //Prints the list
 	}
 
 	/**
@@ -113,31 +117,34 @@ public class MainActivity extends AppCompatActivity
 	 	window.showAtLocation(view, Gravity.CENTER, 0, 0);
 
 	 	View popUpView = window.getContentView();
+	 	//Gets the three inputs into variables
 	 	final TextView nameInput = popUpView.findViewById(R.id.itemName);
 	 	final TextView amountInput = popUpView.findViewById(R.id.itemAmount);
 	 	final Spinner categoryDropDown = popUpView.findViewById(R.id.categoryDropdown);
 
 	 	Button confirmButton = popUpView.findViewById(R.id.confirmButton);
+	 	//Sets the confirm button's onClick
 	 	confirmButton.setOnClickListener(new View.OnClickListener(){
 
 			@Override
 			public void onClick(View v)
 			{
-				String itemName = nameInput.getText().toString();
-				int itemAmount = 0;
+				String itemName = nameInput.getText().toString(); //Sets the item's name
+				int itemAmount = 0; //Default quantity is zero
 				try
 				{
-					itemAmount = Integer.parseInt(amountInput.getText().toString());
+					itemAmount = Integer.parseInt(amountInput.getText().toString()); //Parses the amount
 				}
 				catch(NumberFormatException e)
 				{
 					e.printStackTrace();
 				}
-				String itemCategory = categoryDropDown.getSelectedItem().toString().toLowerCase();
+				String itemCategory = categoryDropDown.getSelectedItem().toString().toLowerCase(); //Sets the item's category
 
-				InventoryItem item = new InventoryItem(itemName, itemCategory, itemAmount);
-				builder.addItem(item);
+				InventoryItem item = new InventoryItem(itemName, itemCategory, itemAmount); //Creates an item
+				builder.addItem(item); //Adds it to the list
 
+				//Makes sure the filtering and searching stay active when adding an item
 				boolean filtered = false;
 				if(filters != null)
 				{
@@ -159,9 +166,9 @@ public class MainActivity extends AppCompatActivity
 					builder.setQuery(query);
 				}
 
-				builder.printList();
+				builder.printList(); //Prints the list
 
-				window.dismiss();
+				window.dismiss(); //Dismisses the pop up window
 			}
 		});
 	}
@@ -172,25 +179,27 @@ public class MainActivity extends AppCompatActivity
 		 */
 		public void searchItems()
 		{
-			builder.setQuery(query);
-		boolean filtered = false;
-		if(filters != null)
-		{
-			for (int i = 0; i < filters.size(); i++)
+			builder.setQuery(query); //Sets the list builder's search query
+
+			//Makes sure the filters stay active
+			boolean filtered = false;
+			if(filters != null)
 			{
-				if (filters.get(i).booleanValue())
+				for (int i = 0; i < filters.size(); i++)
 				{
-					filtered = true;
-					break;
+					if (filters.get(i).booleanValue())
+					{
+						filtered = true;
+						break;
+					}
 				}
 			}
+			if(filtered)
+			{
+				builder.setFilters(filters);
+			}
+			builder.printList(); //Prints the list
 		}
-		if(filtered)
-		{
-			builder.setFilters(filters);
-		}
-		builder.printList();
-	}
 
 	/**
 	 * Creates mini pop-up window to allow user to select filters and then filters the listView
@@ -210,6 +219,8 @@ public class MainActivity extends AppCompatActivity
 		window.showAtLocation(view, Gravity.CENTER, 0, 0);
 
 		View popUpView = window.getContentView();
+
+		//Gets all of the switches
 		final Switch doughsFilter = popUpView.findViewById(R.id.doughsFilter);
 		final Switch liquidsFilter = popUpView.findViewById(R.id.liquidsFilter);
 		final Switch breadsFilter = popUpView.findViewById(R.id.breadsFilter);
@@ -221,6 +232,7 @@ public class MainActivity extends AppCompatActivity
 
 		final Button confirmButton = popUpView.findViewById(R.id.filterConfirmButton);
 
+		//If the filters are active, set the currently used filters to be active
 		if(filters != null)
 		{
 			if(filters.size() != 0)
@@ -242,6 +254,7 @@ public class MainActivity extends AppCompatActivity
 			filters = new ArrayList<>();
 		}
 
+		//Sets the confirm button's onClick
 		confirmButton.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View v)
@@ -258,14 +271,15 @@ public class MainActivity extends AppCompatActivity
 
 				builder.setFilters(filters);
 
+				//Makes sure searching stays active
 				if(!query.equals(""))
 				{
 					builder.setQuery(query);
 				}
 
-				builder.printList();
+				builder.printList(); //Prints the list
 
-				window.dismiss();
+				window.dismiss(); //Dismisses the pop-up window
 			}
 		});
 	}
